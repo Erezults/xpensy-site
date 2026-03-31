@@ -190,6 +190,23 @@
     .feature-visual .phone-device { width: 240px; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(139,92,246,0.15); transform: none; }
     .feature-visual .phone-device:hover { transform: translateY(-8px); }
 
+    /* ═══ AI CARD (Feature 01) ═══ */
+    .ai-card-wrap {
+      position: relative; width: 300px;
+    }
+    .ai-card-glow {
+      position: absolute; inset: -20px; border-radius: 32px; z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(124,58,237,0.25), transparent 70%);
+      filter: blur(20px); animation: orb-float 6s ease-in-out infinite;
+    }
+    .ai-card-img {
+      position: relative; z-index: 1; width: 100%; border-radius: 20px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 24px 64px rgba(0,0,0,0.5);
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    }
+    .ai-card-wrap:hover .ai-card-img { transform: translateY(-6px) scale(1.02); }
+    @media (max-width: 960px) { .ai-card-wrap { width: 260px; } }
+
     /* ═══ HOW IT WORKS ═══ */
     .how-section { padding: 120px 24px; background: var(--bg-dark); position: relative; overflow: hidden; }
     .how-section::before {
@@ -362,7 +379,7 @@
 <section class="features" id="features">
   <div class="features-bg"></div>
   <div class="sr"><div class="section-label" data-he="יכולות" data-en="Features">יכולות</div></div>
-  <div class="section-title sr sr-d1" data-he="הכל מה שצריך לטיול" data-en="Everything You Need for a Trip">הכל מה שצריך לטיול</div>
+  <div class="section-title sr sr-d1" data-he="כל מה שצריך לטיול" data-en="Everything You Need for a Trip">כל מה שצריך לטיול</div>
   <div class="section-subtitle sr sr-d2" data-he="מעקב חכם, חלוקה הוגנת, ותיעוד מלא — בלי אקסלים ובלי בלאגן." data-en="Smart tracking, fair splitting, full documentation — no spreadsheets, no mess.">מעקב חכם, חלוקה הוגנת, ותיעוד מלא — בלי אקסלים ובלי בלאגן.</div>
 
   <!-- Feature 1 -->
@@ -379,7 +396,10 @@
       </div>
     </div>
     <div class="feature-visual">
-      <div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><img src="images/auth-screen.png" alt="AI Scan" loading="lazy"></div></div>
+      <div class="ai-card-wrap">
+        <div class="ai-card-glow"></div>
+        <img src="images/ai-input-section.png" alt="AI Input" class="ai-card-img" loading="lazy">
+      </div>
     </div>
   </div>
 
