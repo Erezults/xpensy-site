@@ -4,417 +4,604 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xpensy — ניהול הוצאות חכם לטיולים</title>
-  <meta name="description" content="Xpensy - Smart group expense tracking for trips. Split costs, scan receipts with AI, track budgets.">
+  <meta name="description" content="Xpensy - Track group trip expenses, scan receipts with AI, split costs automatically. Free on the App Store.">
   <meta name="apple-itunes-app" content="app-id=6761180051">
   <link rel="icon" type="image/png" href="images/app-icon.png">
   <link rel="apple-touch-icon" href="images/app-icon.png">
   <meta property="og:title" content="Xpensy — Smart Trip Expense Tracker">
   <meta property="og:description" content="Track group trip expenses, scan receipts with AI, split costs automatically.">
-  <meta property="og:image" content="https://xpensy.erezults.com/images/home-screen.png">
+  <meta property="og:image" content="https://xpensy.erezults.com/images/og-image.png">
   <meta property="og:url" content="https://xpensy.erezults.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════════════════
+       XPENSY — "Midnight Voyager" Landing Page
+       Luxury travel × fintech aesthetic
+    ═══════════════════════════════════════════════════════ */
+
     :root {
-      --purple-deep: #231937;
-      --purple-mid: #3b3086;
-      --purple-vivid: #6c5ce7;
-      --purple-light: #a78bfa;
-      --purple-glow: #c4b5fd;
-      --surface: #faf9fb;
-      --text: #1a1a2e;
-      --text-secondary: #6b6882;
-      --white: #ffffff;
-      --gradient-hero: linear-gradient(160deg, #1a0e2e 0%, #2d1b4e 40%, #3b2870 70%, #4a3590 100%);
-      --gradient-accent: linear-gradient(135deg, #6c5ce7, #a78bfa);
-      --radius: 24px;
-      --font-display: 'Rubik', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
+      --bg-deep: #08060e;
+      --bg-dark: #0d0a17;
+      --bg-card: #13101f;
+      --bg-glass: rgba(255,255,255,0.04);
+      --border-glass: rgba(255,255,255,0.08);
+      --purple: #8b5cf6;
+      --purple-bright: #a78bfa;
+      --purple-glow: rgba(139,92,246,0.25);
+      --indigo: #6366f1;
+      --cyan: #22d3ee;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+      --text: #f1f0f5;
+      --text-secondary: rgba(241,240,245,0.55);
+      --text-muted: rgba(241,240,245,0.3);
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--surface);
-      color: var(--text);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: var(--font-body); background: var(--bg-deep); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-    /* ─── Language Toggle ─── */
+    /* ═══ LANGUAGE TOGGLE ═══ */
     .lang-toggle {
-      position: fixed; top: 20px; left: 20px; z-index: 1000;
-      background: rgba(255,255,255,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15); border-radius: 40px;
-      padding: 6px; display: flex; gap: 4px;
-      transition: all 0.3s;
+      position: fixed; top: 24px; left: 24px; z-index: 100;
+      background: rgba(13,10,23,0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-glass); border-radius: 40px;
+      padding: 4px; display: flex; gap: 2px;
     }
-    .lang-toggle.scrolled { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
     .lang-toggle button {
-      border: none; background: transparent; padding: 8px 16px; border-radius: 30px;
+      border: none; background: transparent; padding: 10px 20px; border-radius: 36px;
       font-family: var(--font-display); font-weight: 600; font-size: 13px; cursor: pointer;
-      color: rgba(255,255,255,0.6); transition: all 0.3s;
+      color: var(--text-muted); transition: all 0.4s cubic-bezier(.4,0,.2,1); letter-spacing: 0.02em;
     }
-    .lang-toggle.scrolled button { color: var(--text-secondary); }
-    .lang-toggle button.active {
-      background: var(--purple-vivid); color: var(--white) !important;
-      box-shadow: 0 2px 12px rgba(108,92,231,0.4);
-    }
+    .lang-toggle button.active { background: var(--purple); color: var(--text); box-shadow: 0 0 24px var(--purple-glow); }
+    .lang-toggle button:hover:not(.active) { color: var(--text-secondary); }
 
-    /* ─── Hero Section ─── */
+    /* ═══ HERO ═══ */
     .hero {
-      background: var(--gradient-hero);
       min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; padding: 60px 24px;
+      position: relative; overflow: hidden; padding: 80px 24px;
     }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(108,92,231,0.15), transparent),
-                  radial-gradient(ellipse 50% 40% at 70% 70%, rgba(167,139,250,0.1), transparent);
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 20%, rgba(99,102,241,0.12), transparent),
+        radial-gradient(ellipse 60% 40% at 70% 80%, rgba(139,92,246,0.1), transparent),
+        radial-gradient(ellipse 40% 30% at 50% 50%, rgba(34,211,238,0.05), transparent);
+    }
+    .hero-noise {
+      position: absolute; inset: 0; opacity: 0.03;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
     .hero-grid {
-      position: absolute; inset: 0; opacity: 0.04;
-      background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
-      background-size: 60px 60px;
+      position: absolute; inset: 0; opacity: 0.025;
+      background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent);
     }
+
     .hero-content {
-      position: relative; z-index: 2; display: flex; align-items: center; gap: 80px;
+      position: relative; z-index: 2; display: flex; align-items: center; gap: 100px;
       max-width: 1200px; width: 100%;
     }
-    .hero-text { flex: 1; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(108,92,231,0.2); border: 1px solid rgba(108,92,231,0.3);
-      border-radius: 40px; padding: 8px 20px; margin-bottom: 24px;
-      font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--purple-glow);
+    .hero-text { flex: 1; max-width: 560px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--border-glass); border-radius: 40px;
+      padding: 8px 20px 8px 14px; margin-bottom: 32px;
+      font-size: 13px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.03em;
+      background: var(--bg-glass);
     }
-    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .hero h1 {
-      font-family: var(--font-display); font-size: clamp(42px, 6vw, 72px); font-weight: 900;
-      color: var(--white); line-height: 1.1; margin-bottom: 20px;
-      letter-spacing: -1px;
-    }
-    .hero h1 span { background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub {
-      font-size: 18px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 480px; margin-bottom: 36px;
-    }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--white); color: var(--purple-deep); padding: 16px 36px;
-      border-radius: 50px; text-decoration: none; font-family: var(--font-display);
-      font-weight: 700; font-size: 16px; transition: all 0.3s;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-    }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-    .hero-cta svg { width: 24px; height: 24px; }
-    .hero-phone { flex-shrink: 0; position: relative; }
+    .hero-eyebrow .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 12px rgba(52,211,153,0.5); animation: pulse 2.5s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
 
-    /* ─── iPhone Mockup ─── */
-    .phone-mockup {
-      width: 280px; height: 572px; border-radius: 44px; overflow: hidden;
-      background: #000; box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 8px rgba(255,255,255,0.06);
+    .hero h1 {
+      font-family: var(--font-display); font-size: clamp(44px, 5.5vw, 76px); font-weight: 900;
+      line-height: 1.05; margin-bottom: 24px; letter-spacing: -0.03em;
+    }
+    .hero h1 .gradient { background: linear-gradient(135deg, var(--purple-bright), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .hero-desc { font-size: 17px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 40px; }
+
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--text); color: var(--bg-deep); padding: 16px 32px;
+      border-radius: 50px; text-decoration: none; font-family: var(--font-display);
+      font-weight: 700; font-size: 15px; transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,0.15); }
+    .btn-primary svg { width: 22px; height: 22px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-glass); color: var(--text-secondary); padding: 16px 28px;
+      border-radius: 50px; text-decoration: none; font-family: var(--font-display);
+      font-weight: 600; font-size: 15px; border: 1px solid var(--border-glass);
+      transition: all 0.4s;
+    }
+    .btn-ghost:hover { border-color: var(--purple); color: var(--text); background: rgba(139,92,246,0.08); }
+
+    /* ═══ PHONE MOCKUP ═══ */
+    .hero-phone { flex-shrink: 0; position: relative; perspective: 1000px; }
+    .phone-device {
+      width: 280px; border-radius: 40px; overflow: hidden; position: relative;
+      background: #1a1a2e; padding: 10px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 40px 100px rgba(0,0,0,0.6), 0 0 80px var(--purple-glow);
+      transform: rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    .phone-device:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
+    .phone-screen { border-radius: 30px; overflow: hidden; background: #fff; }
+    .phone-screen img { width: 100%; display: block; }
+    .phone-notch {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 28px; background: #1a1a2e; border-radius: 0 0 16px 16px; z-index: 5;
+    }
+    .phone-glow-orb {
+      position: absolute; width: 400px; height: 400px; border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle, var(--purple-glow), transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      animation: orb-float 8s ease-in-out infinite;
+    }
+    @keyframes orb-float { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; } 50% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; } }
+
+    /* ═══ FEATURES ═══ */
+    .features { padding: 160px 24px; position: relative; }
+    .features-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 30% at 50% 0%, rgba(139,92,246,0.06), transparent);
+    }
+    .section-label {
+      font-family: var(--font-display); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 4px; color: var(--purple-bright);
+      text-align: center; margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+      text-align: center; margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.15;
+    }
+    .section-subtitle { text-align: center; color: var(--text-secondary); font-size: 17px; margin-bottom: 100px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+    .feature-block {
+      display: flex; align-items: center; gap: 80px; max-width: 1100px;
+      margin: 0 auto 160px; position: relative;
+    }
+    .feature-block.flip { flex-direction: row-reverse; }
+    .feature-info { flex: 1; }
+    .feature-num {
+      font-family: var(--font-display); font-size: 64px; font-weight: 900;
+      background: linear-gradient(180deg, rgba(139,92,246,0.2), transparent);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 16px; line-height: 1;
+    }
+    .feature-info h3 { font-family: var(--font-display); font-size: 28px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .feature-info p { color: var(--text-secondary); font-size: 16px; line-height: 1.8; }
+    .feature-tags { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+    .feature-tag {
+      padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+      background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-secondary);
+    }
+
+    .feature-visual { flex-shrink: 0; position: relative; }
+    .feature-visual .phone-device { width: 240px; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(139,92,246,0.15); transform: none; }
+    .feature-visual .phone-device:hover { transform: translateY(-8px); }
+
+    /* ═══ HOW IT WORKS ═══ */
+    .how-section { padding: 120px 24px; background: var(--bg-dark); position: relative; overflow: hidden; }
+    .how-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+    }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto; }
+    .step-card {
+      background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 24px;
+      padding: 40px 32px; text-align: center; position: relative; overflow: hidden;
+      transition: all 0.5s cubic-bezier(.4,0,.2,1);
+    }
+    .step-card:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .step-card::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 2px; background: var(--purple);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .step-card:hover::before { opacity: 1; }
+    .step-icon { font-size: 48px; margin-bottom: 24px; display: block; }
+    .step-num {
+      position: absolute; top: 16px; right: 20px; font-family: var(--font-display);
+      font-size: 72px; font-weight: 900; color: rgba(139,92,246,0.06); line-height: 1;
+    }
+    html[dir="ltr"] .step-num { right: auto; left: 20px; }
+    .step-card h4 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .step-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+
+    /* ═══ STATS ═══ */
+    .stats-section { padding: 100px 24px; position: relative; }
+    .stats-section::before, .stats-section::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+    }
+    .stats-section::before { top: 0; }
+    .stats-section::after { bottom: 0; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .stat-val {
+      font-family: var(--font-display); font-size: clamp(40px, 5vw, 56px); font-weight: 900;
+      background: linear-gradient(135deg, var(--purple-bright), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+    .stat-desc { color: var(--text-muted); font-size: 14px; margin-top: 8px; font-weight: 500; }
+
+    /* ═══ USE CASES ═══ */
+    .usecases { padding: 160px 24px; position: relative; }
+    .usecases-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(34,211,238,0.04), transparent); }
+    .usecases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .usecase-card {
+      background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px;
+      padding: 36px 28px; position: relative; overflow: hidden;
+      transition: all 0.5s cubic-bezier(.4,0,.2,1);
+    }
+    .usecase-card:hover { border-color: rgba(139,92,246,0.25); transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
+    .usecase-emoji { font-size: 40px; margin-bottom: 20px; display: block; }
+    .usecase-card h4 { font-family: var(--font-display); font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .usecase-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+    .usecase-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .usecase-chip {
+      font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 16px;
+      background: rgba(139,92,246,0.1); color: var(--purple-bright); border: 1px solid rgba(139,92,246,0.15);
+    }
+
+    /* ═══ FINAL CTA ═══ */
+    .final-cta {
+      padding: 160px 24px; text-align: center; position: relative; overflow: hidden;
+    }
+    .final-cta-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 50% at 50% 100%, rgba(139,92,246,0.15), transparent),
+        radial-gradient(ellipse 40% 30% at 30% 60%, rgba(99,102,241,0.08), transparent);
+    }
+    .final-cta h2 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 60px); font-weight: 900; margin-bottom: 20px; letter-spacing: -0.03em; position: relative; }
+    .final-cta .sub { color: var(--text-secondary); font-size: 18px; margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; position: relative; }
+    .final-cta .btn-primary { position: relative; font-size: 17px; padding: 18px 40px; }
+    .final-cta .free-badge {
+      display: inline-block; margin-top: 20px; font-size: 13px; color: var(--text-muted);
       position: relative;
     }
-    .phone-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .phone-mockup.tall { height: 620px; }
-    .phone-glow {
-      position: absolute; width: 360px; height: 360px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(108,92,231,0.3), transparent 70%);
-      top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;
-      animation: glow-float 6s ease-in-out infinite;
-    }
-    @keyframes glow-float { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } }
 
-    /* ─── Features Section ─── */
-    .features { padding: 120px 24px; background: var(--surface); }
-    .section-header { text-align: center; margin-bottom: 80px; }
-    .section-tag {
-      display: inline-block; font-family: var(--font-display); font-size: 13px; font-weight: 700;
-      color: var(--purple-vivid); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
-    }
-    .section-header h2 {
-      font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 800;
-      color: var(--text); line-height: 1.2;
-    }
+    /* ═══ FOOTER ═══ */
+    footer { padding: 48px 24px; border-top: 1px solid var(--border-glass); text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--purple-bright); }
+    .footer-copy { color: rgba(255,255,255,0.15); font-size: 12px; }
 
-    .feature-row {
-      display: flex; align-items: center; gap: 80px; max-width: 1100px; margin: 0 auto 120px;
-    }
-    .feature-row.reverse { flex-direction: row-reverse; }
-    .feature-text { flex: 1; }
-    .feature-icon {
-      width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
-      font-size: 28px; margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(167,139,250,0.08));
-    }
-    .feature-text h3 { font-family: var(--font-display); font-size: 28px; font-weight: 800; margin-bottom: 12px; color: var(--text); }
-    .feature-text p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
-    .feature-phone { flex-shrink: 0; }
+    /* ═══ SCROLL REVEAL ═══ */
+    .sr { opacity: 0; transform: translateY(50px); transition: opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1); }
+    .sr.visible { opacity: 1; transform: translateY(0); }
+    .sr-d1 { transition-delay: 0.1s; } .sr-d2 { transition-delay: 0.2s; } .sr-d3 { transition-delay: 0.3s; }
+    .sr-d4 { transition-delay: 0.4s; } .sr-d5 { transition-delay: 0.5s; }
 
-    /* ─── Stats Bar ─── */
-    .stats-bar {
-      background: var(--gradient-hero); padding: 80px 24px;
-    }
-    .stats-grid {
-      max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center;
-    }
-    .stat-item .stat-number {
-      font-family: var(--font-display); font-size: 48px; font-weight: 900;
-      background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .stat-item .stat-label { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; font-weight: 500; }
-
-    /* ─── CTA Section ─── */
-    .cta-section {
-      padding: 120px 24px; text-align: center;
-      background: linear-gradient(180deg, var(--surface) 0%, #f0ebfa 100%);
-    }
-    .cta-section h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
-    .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .cta-button {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--purple-vivid); color: var(--white); padding: 18px 40px;
-      border-radius: 50px; text-decoration: none; font-family: var(--font-display);
-      font-weight: 700; font-size: 17px; transition: all 0.3s;
-      box-shadow: 0 8px 32px rgba(108,92,231,0.35);
-    }
-    .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(108,92,231,0.45); }
-
-    /* ─── Footer ─── */
-    footer {
-      background: var(--purple-deep); padding: 48px 24px; text-align: center;
-    }
-    footer .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-    footer a:hover { color: var(--purple-light); }
-    footer .copyright { color: rgba(255,255,255,0.25); font-size: 12px; }
-
-    /* ─── Scroll Animations ─── */
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-
-    /* ─── Responsive ─── */
-    @media (max-width: 900px) {
-      .hero-content { flex-direction: column; text-align: center; gap: 48px; }
-      .hero-sub { margin-left: auto; margin-right: auto; }
-      .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; gap: 40px; }
-      .feature-icon { margin-left: auto; margin-right: auto; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .phone-mockup { width: 220px; height: 450px; border-radius: 36px; }
-      .phone-mockup.tall { height: 490px; }
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 960px) {
+      .hero-content { flex-direction: column; text-align: center; gap: 60px; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .feature-block, .feature-block.flip { flex-direction: column; text-align: center; gap: 48px; }
+      .feature-num { font-size: 48px; }
+      .steps-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .usecases-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .phone-device { width: 220px !important; }
     }
     @media (max-width: 480px) {
-      .phone-mockup { width: 180px; height: 370px; border-radius: 30px; }
-      .phone-mockup.tall { height: 400px; }
-      .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-      .stat-item .stat-number { font-size: 36px; }
+      .hero h1 { font-size: 36px; }
+      .phone-device { width: 200px !important; border-radius: 32px !important; padding: 8px !important; }
+      .phone-screen { border-radius: 24px !important; }
+      .phone-notch { width: 90px; height: 22px; }
+      .btn-primary, .btn-ghost { padding: 14px 24px; font-size: 14px; }
     }
 
-    /* ─── RTL adjustments for English ─── */
-    html[dir="ltr"] .hero-content { flex-direction: row-reverse; }
-    html[dir="ltr"] .feature-row { flex-direction: row-reverse; }
-    html[dir="ltr"] .feature-row.reverse { flex-direction: row; }
-    @media (max-width: 900px) {
+    /* ═══ RTL/LTR flip ═══ */
+    html[dir="ltr"] .feature-block.flip { flex-direction: row; }
+    @media (max-width: 960px) {
       html[dir="ltr"] .hero-content,
-      html[dir="ltr"] .feature-row,
-      html[dir="ltr"] .feature-row.reverse { flex-direction: column; }
+      html[dir="ltr"] .feature-block,
+      html[dir="ltr"] .feature-block.flip { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Language Toggle -->
-  <div class="lang-toggle" id="langToggle">
-    <button class="active" onclick="setLang('he')">עברית</button>
-    <button onclick="setLang('en')">English</button>
-  </div>
+<!-- ═══ LANGUAGE TOGGLE ═══ -->
+<div class="lang-toggle">
+  <button class="active" onclick="setLang('he')">עברית</button>
+  <button onclick="setLang('en')">English</button>
+</div>
 
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          <span data-he="זמין כעת ב-App Store" data-en="Available on the App Store">זמין כעת ב-App Store</span>
-        </div>
-        <h1>
-          <span data-he="ניהול הוצאות" data-en="Smart Expense">ניהול הוצאות</span><br>
-          <span data-he="חכם לטיולים" data-en="Tracking for Trips" style="background:none;-webkit-text-fill-color:rgba(255,255,255,0.85)">חכם לטיולים</span>
-        </h1>
-        <p class="hero-sub" data-he="עוקבים אחרי כל הוצאה, מחלקים בין חברים, סורקים קבלות עם AI — הכל במקום אחד, גם אופליין." data-en="Track every expense, split costs with friends, scan receipts with AI — all in one place, even offline.">עוקבים אחרי כל הוצאה, מחלקים בין חברים, סורקים קבלות עם AI — הכל במקום אחד, גם אופליין.</p>
-        <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="hero-cta">
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow sr">
+        <span class="pulse"></span>
+        <span data-he="זמין כעת ב-App Store" data-en="Now on the App Store">זמין כעת ב-App Store</span>
+      </div>
+      <h1 class="sr sr-d1">
+        <span data-he="ניהול הוצאות" data-en="Expense Tracking">ניהול הוצאות</span><br>
+        <span class="gradient" data-he="חכם לטיולים" data-en="Built for Travel">חכם לטיולים</span>
+      </h1>
+      <p class="hero-desc sr sr-d2" data-he="עוקבים אחרי כל שקל, מחלקים עלויות בין חברים, סורקים קבלות עם AI — הכל אוטומטי, גם בלי אינטרנט." data-en="Track every expense, split costs between friends, scan receipts with AI — fully automatic, even offline.">עוקבים אחרי כל שקל, מחלקים עלויות בין חברים, סורקים קבלות עם AI — הכל אוטומטי, גם בלי אינטרנט.</p>
+      <div class="hero-actions sr sr-d3">
+        <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="btn-primary">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          <span data-he="הורידו מה-App Store" data-en="Download on the App Store">הורידו מה-App Store</span>
+          <span data-he="הורדה מ-App Store" data-en="Download on App Store">הורדה מ-App Store</span>
+        </a>
+        <a href="#features" class="btn-ghost">
+          <span data-he="גלו עוד ↓" data-en="Learn more ↓">גלו עוד ↓</span>
         </a>
       </div>
-      <div class="hero-phone">
-        <div class="phone-glow"></div>
-        <div class="phone-mockup">
-          <img src="images/trip-hero.png" alt="Xpensy Trip Dashboard" loading="eager">
-        </div>
+    </div>
+    <div class="hero-phone sr sr-d4">
+      <div class="phone-glow-orb"></div>
+      <div class="phone-device">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><img src="images/trip-hero.png" alt="Xpensy App"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════ FEATURES ═══════════ -->
-  <section class="features">
-    <div class="section-header reveal">
-      <div class="section-tag" data-he="יכולות" data-en="Features">יכולות</div>
-      <h2 data-he="הכל מה שצריך לטיול מושלם" data-en="Everything You Need for the Perfect Trip">הכל מה שצריך לטיול מושלם</h2>
-    </div>
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<section class="features" id="features">
+  <div class="features-bg"></div>
+  <div class="sr"><div class="section-label" data-he="יכולות" data-en="Features">יכולות</div></div>
+  <div class="section-title sr sr-d1" data-he="הכל מה שצריך לטיול" data-en="Everything You Need for a Trip">הכל מה שצריך לטיול</div>
+  <div class="section-subtitle sr sr-d2" data-he="מעקב חכם, חלוקה הוגנת, ותיעוד מלא — בלי אקסלים ובלי בלאגן." data-en="Smart tracking, fair splitting, full documentation — no spreadsheets, no mess.">מעקב חכם, חלוקה הוגנת, ותיעוד מלא — בלי אקסלים ובלי בלאגן.</div>
 
-    <!-- Feature 1: AI Receipt -->
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <div class="feature-icon">🤖</div>
-        <h3 data-he="סריקת קבלות עם AI" data-en="AI Receipt Scanning">סריקת קבלות עם AI</h3>
-        <p data-he="צלמו קבלה ו-AI יזהה אוטומטית את הסכום, הקטגוריה, התאריך ושם בית העסק. חוסך לכם זמן בכל הוצאה." data-en="Snap a receipt photo and AI automatically detects the amount, category, date, and merchant name. Saves you time on every expense.">צלמו קבלה ו-AI יזהה אוטומטית את הסכום, הקטגוריה, התאריך ושם בית העסק. חוסך לכם זמן בכל הוצאה.</p>
-      </div>
-      <div class="feature-phone">
-        <div class="phone-mockup"><img src="images/auth-screen.png" alt="Add Expense with AI" loading="lazy"></div>
-      </div>
-    </div>
-
-    <!-- Feature 2: Timeline -->
-    <div class="feature-row reverse reveal">
-      <div class="feature-text">
-        <div class="feature-icon">📊</div>
-        <h3 data-he="ציר זמן וסטטיסטיקות" data-en="Timeline & Statistics">ציר זמן וסטטיסטיקות</h3>
-        <p data-he="ראו את כל ההוצאות לפי ציר זמן — לפני, במהלך ואחרי הטיול. גרפים וניתוחים לפי קטגוריות, ממוצע יומי ותקציב." data-en="View all expenses on a timeline — before, during, and after the trip. Charts and breakdowns by category, daily average, and budget.">ראו את כל ההוצאות לפי ציר זמן — לפני, במהלך ואחרי הטיול. גרפים וניתוחים לפי קטגוריות, ממוצע יומי ותקציב.</p>
-      </div>
-      <div class="feature-phone">
-        <div class="phone-mockup tall"><img src="images/timeline-screen.png" alt="Timeline" loading="lazy"></div>
+  <!-- Feature 1 -->
+  <div class="feature-block sr">
+    <div class="feature-info">
+      <div class="feature-num">01</div>
+      <h3 data-he="סריקת קבלות עם AI" data-en="AI Receipt Scanning">סריקת קבלות עם AI</h3>
+      <p data-he="צלמו קבלה, וה-AI יזהה אוטומטית סכום, קטגוריה, תאריך ושם בית עסק. תוך שניות — ההוצאה מוכנה." data-en="Snap a receipt and AI instantly detects the amount, category, date, and merchant. In seconds — the expense is ready.">צלמו קבלה, וה-AI יזהה אוטומטית סכום, קטגוריה, תאריך ושם בית עסק. תוך שניות — ההוצאה מוכנה.</p>
+      <div class="feature-tags">
+        <span class="feature-tag" data-he="מצלמה" data-en="Camera">מצלמה</span>
+        <span class="feature-tag" data-he="גלריה" data-en="Gallery">גלריה</span>
+        <span class="feature-tag" data-he="מסמך" data-en="Document">מסמך</span>
+        <span class="feature-tag">Gemini AI</span>
       </div>
     </div>
+    <div class="feature-visual">
+      <div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><img src="images/auth-screen.png" alt="AI Scan" loading="lazy"></div></div>
+    </div>
+  </div>
 
-    <!-- Feature 3: Group Management -->
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <div class="feature-icon">👥</div>
-        <h3 data-he="ניהול קבוצה וחלוקת הוצאות" data-en="Group Management & Expense Splitting">ניהול קבוצה וחלוקת הוצאות</h3>
-        <p data-he="הזמינו חברים עם קוד או QR, חלקו הוצאות שווה או מותאם אישית, נהלו הרשאות — כל אחד רואה את מה שצריך." data-en="Invite friends with a code or QR, split expenses equally or custom, manage permissions — everyone sees what they need.">הזמינו חברים עם קוד או QR, חלקו הוצאות שווה או מותאם אישית, נהלו הרשאות — כל אחד רואה את מה שצריך.</p>
-      </div>
-      <div class="feature-phone">
-        <div class="phone-mockup"><img src="images/folder-grid.png" alt="Trip Groups" loading="lazy"></div>
+  <!-- Feature 2 -->
+  <div class="feature-block flip sr">
+    <div class="feature-info">
+      <div class="feature-num">02</div>
+      <h3 data-he="ציר זמן מלא" data-en="Complete Timeline">ציר זמן מלא</h3>
+      <p data-he="כל ההוצאות מסודרות כרונולוגית — לפני הטיול, במהלכו ואחריו. גרפים יומיים, סיכומים וניתוחים." data-en="All expenses organized chronologically — before, during, and after the trip. Daily charts, summaries, and analytics.">כל ההוצאות מסודרות כרונולוגית — לפני הטיול, במהלכו ואחריו. גרפים יומיים, סיכומים וניתוחים.</p>
+      <div class="feature-tags">
+        <span class="feature-tag" data-he="ציר זמן" data-en="Timeline">ציר זמן</span>
+        <span class="feature-tag" data-he="גרפים" data-en="Charts">גרפים</span>
+        <span class="feature-tag" data-he="סיכום יומי" data-en="Daily Summary">סיכום יומי</span>
       </div>
     </div>
+    <div class="feature-visual">
+      <div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><img src="images/timeline-screen.png" alt="Timeline" loading="lazy"></div></div>
+    </div>
+  </div>
 
-    <!-- Feature 4: Multi-currency -->
-    <div class="feature-row reverse reveal">
-      <div class="feature-text">
-        <div class="feature-icon">💱</div>
-        <h3 data-he="רב-מטבעי אוטומטי" data-en="Automatic Multi-Currency">רב-מטבעי אוטומטי</h3>
-        <p data-he="תמיכה בכל המטבעות הנפוצים עם שערי חליפין עדכניים. הוצאה ב-THB? תראו אותה גם ב-ILS. הכל אוטומטי." data-en="Support for all major currencies with live exchange rates. Expense in THB? See it in USD too. Fully automatic.">תמיכה בכל המטבעות הנפוצים עם שערי חליפין עדכניים. הוצאה ב-THB? תראו אותה גם ב-ILS. הכל אוטומטי.</p>
-      </div>
-      <div class="feature-phone">
-        <div class="phone-mockup"><img src="images/trip-settings.png" alt="Trip Settings" loading="lazy"></div>
+  <!-- Feature 3 -->
+  <div class="feature-block sr">
+    <div class="feature-info">
+      <div class="feature-num">03</div>
+      <h3 data-he="סטטיסטיקות וניתוחים" data-en="Statistics & Analytics">סטטיסטיקות וניתוחים</h3>
+      <p data-he="חלוקה לפי קטגוריות, ממוצע יומי, תקציב ומעקב — תמיד יודעים בדיוק לאן הולך הכסף." data-en="Category breakdown, daily average, budget tracking — always know exactly where the money goes.">חלוקה לפי קטגוריות, ממוצע יומי, תקציב ומעקב — תמיד יודעים בדיוק לאן הולך הכסף.</p>
+      <div class="feature-tags">
+        <span class="feature-tag" data-he="עוגה" data-en="Pie Chart">עוגה</span>
+        <span class="feature-tag" data-he="תקציב" data-en="Budget">תקציב</span>
+        <span class="feature-tag" data-he="ממוצע יומי" data-en="Daily Avg">ממוצע יומי</span>
       </div>
     </div>
+    <div class="feature-visual">
+      <div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><img src="images/statistics-screen.png" alt="Statistics" loading="lazy"></div></div>
+    </div>
+  </div>
 
-    <!-- Feature 5: Offline -->
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <div class="feature-icon">✈️</div>
-        <h3 data-he="עובד גם אופליין" data-en="Works Offline Too">עובד גם אופליין</h3>
-        <p data-he="אין אינטרנט? אין בעיה. כל הנתונים נשמרים מקומית ומסתנכרנים אוטומטית כשחוזרים לרשת. אף הוצאה לא הולכת לאיבוד." data-en="No internet? No problem. All data is saved locally and syncs automatically when back online. No expense ever gets lost.">אין אינטרנט? אין בעיה. כל הנתונים נשמרים מקומית ומסתנכרנים אוטומטית כשחוזרים לרשת. אף הוצאה לא הולכת לאיבוד.</p>
-      </div>
-      <div class="feature-phone">
-        <div class="phone-mockup"><img src="images/statistics-screen.png" alt="Statistics" loading="lazy"></div>
+  <!-- Feature 4 -->
+  <div class="feature-block flip sr">
+    <div class="feature-info">
+      <div class="feature-num">04</div>
+      <h3 data-he="רב-מטבעי אוטומטי" data-en="Auto Multi-Currency">רב-מטבעי אוטומטי</h3>
+      <p data-he="שילמתם ב-THB? ההוצאה תומרת אוטומטית לשקל. שערי חליפין עדכניים, ללא מאמץ." data-en="Paid in THB? The expense converts automatically to your base currency. Live exchange rates, zero effort.">שילמתם ב-THB? ההוצאה תומרת אוטומטית לשקל. שערי חליפין עדכניים, ללא מאמץ.</p>
+      <div class="feature-tags">
+        <span class="feature-tag">ILS ↔ THB</span>
+        <span class="feature-tag">USD ↔ EUR</span>
+        <span class="feature-tag" data-he="שערים חיים" data-en="Live Rates">שערים חיים</span>
       </div>
     </div>
-  </section>
+    <div class="feature-visual">
+      <div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><img src="images/trip-settings.png" alt="Multi-Currency" loading="lazy"></div></div>
+    </div>
+  </div>
 
-  <!-- ═══════════ STATS BAR ═══════════ -->
-  <section class="stats-bar">
-    <div class="stats-grid reveal">
-      <div class="stat-item">
-        <div class="stat-number">∞</div>
-        <div class="stat-label" data-he="מטבעות נתמכים" data-en="Supported Currencies">מטבעות נתמכים</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">AI</div>
-        <div class="stat-label" data-he="סריקת קבלות חכמה" data-en="Smart Receipt Scanning">סריקת קבלות חכמה</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label" data-he="עובד אופליין" data-en="Works Offline">עובד אופליין</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-he="חינם" data-en="Free">חינם</div>
-        <div class="stat-label" data-he="ללא מנוי או פרסומות" data-en="No subscriptions or ads">ללא מנוי או פרסומות</div>
+  <!-- Feature 5 -->
+  <div class="feature-block sr">
+    <div class="feature-info">
+      <div class="feature-num">05</div>
+      <h3 data-he="עובד גם אופליין" data-en="Works Offline">עובד גם אופליין</h3>
+      <p data-he="בהר, באי, במדבר — הכל נשמר מקומית ומסתנכרן אוטומטית כשחוזרים לרשת. אף הוצאה לא הולכת לאיבוד." data-en="On a mountain, island, or desert — everything saves locally and syncs when you're back online. No expense ever lost.">בהר, באי, במדבר — הכל נשמר מקומית ומסתנכרן אוטומטית כשחוזרים לרשת. אף הוצאה לא הולכת לאיבוד.</p>
+      <div class="feature-tags">
+        <span class="feature-tag" data-he="אופליין" data-en="Offline">אופליין</span>
+        <span class="feature-tag" data-he="סנכרון" data-en="Auto-Sync">סנכרון</span>
+        <span class="feature-tag" data-he="הצפנה" data-en="Encrypted">הצפנה</span>
       </div>
     </div>
-  </section>
-
-  <!-- ═══════════ CTA ═══════════ -->
-  <section class="cta-section">
-    <div class="reveal">
-      <h2 data-he="מוכנים לטיול הבא?" data-en="Ready for Your Next Trip?">מוכנים לטיול הבא?</h2>
-      <p data-he="הורידו את Xpensy בחינם והתחילו לנהל הוצאות כמו מקצוענים." data-en="Download Xpensy for free and start managing expenses like a pro.">הורידו את Xpensy בחינם והתחילו לנהל הוצאות כמו מקצוענים.</p>
-      <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="cta-button">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        <span data-he="הורידו מה-App Store" data-en="Download on the App Store">הורידו מה-App Store</span>
-      </a>
+    <div class="feature-visual">
+      <div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><img src="images/folder-grid.png" alt="Offline Mode" loading="lazy"></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <footer>
-    <div class="footer-links">
-      <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
-      <a href="/terms" data-he="תנאי שימוש" data-en="Terms of Service">תנאי שימוש</a>
-      <a href="mailto:erezults@gmail.com" data-he="צרו קשר" data-en="Contact Us">צרו קשר</a>
-      <a href="https://www.erezults.com">E-REZULTS</a>
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="how-section">
+  <div class="sr"><div class="section-label" data-he="איך זה עובד" data-en="How It Works">איך זה עובד</div></div>
+  <div class="section-title sr sr-d1" data-he="שלושה צעדים פשוטים" data-en="Three Simple Steps">שלושה צעדים פשוטים</div>
+  <div class="section-subtitle sr sr-d2" data-he="מהרגע שיוצרים טיול ועד הסיכום האחרון" data-en="From creating a trip to the final summary">מהרגע שיוצרים טיול ועד הסיכום האחרון</div>
+  <div class="steps-grid">
+    <div class="step-card sr">
+      <div class="step-num">1</div>
+      <span class="step-icon">🌍</span>
+      <h4 data-he="צרו טיול" data-en="Create a Trip">צרו טיול</h4>
+      <p data-he="בחרו שם, יעד, תאריכים ומטבע. הזמינו חברים עם קוד או QR." data-en="Pick a name, destination, dates, and currency. Invite friends with a code or QR.">בחרו שם, יעד, תאריכים ומטבע. הזמינו חברים עם קוד או QR.</p>
     </div>
-    <div class="copyright">&copy; 2022–2026 E-REZULTS | Erez Cohen</div>
-  </footer>
+    <div class="step-card sr sr-d1">
+      <div class="step-num">2</div>
+      <span class="step-icon">📸</span>
+      <h4 data-he="תעדו הוצאות" data-en="Log Expenses">תעדו הוצאות</h4>
+      <p data-he="הקלידו ידנית או צלמו קבלה — ה-AI ימלא הכל בשבילכם." data-en="Type manually or snap a receipt — AI fills everything for you.">הקלידו ידנית או צלמו קבלה — ה-AI ימלא הכל בשבילכם.</p>
+    </div>
+    <div class="step-card sr sr-d2">
+      <div class="step-num">3</div>
+      <span class="step-icon">📊</span>
+      <h4 data-he="סכמו וחלקו" data-en="Summarize & Split">סכמו וחלקו</h4>
+      <p data-he="ראו סטטיסטיקות, חלוקה לפי קטגוריות, וחלקו הוצאות בין כל המשתתפים." data-en="View statistics, category breakdown, and split expenses among all participants.">ראו סטטיסטיקות, חלוקה לפי קטגוריות, וחלקו הוצאות בין כל המשתתפים.</p>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // ─── Language Switching ───
-    function setLang(lang) {
-      const html = document.documentElement;
-      html.lang = lang === 'he' ? 'he' : 'en';
-      html.dir = lang === 'he' ? 'rtl' : 'ltr';
-      document.title = lang === 'he' ? 'Xpensy — ניהול הוצאות חכם לטיולים' : 'Xpensy — Smart Trip Expense Tracker';
+<!-- ═══════════════ STATS ═══════════════ -->
+<section class="stats-section">
+  <div class="stats-row">
+    <div class="sr">
+      <div class="stat-val" data-count="30">0</div>
+      <div class="stat-desc" data-he="מטבעות נתמכים" data-en="Supported currencies">מטבעות נתמכים</div>
+    </div>
+    <div class="sr sr-d1">
+      <div class="stat-val">AI</div>
+      <div class="stat-desc" data-he="סריקת קבלות חכמה" data-en="Smart receipt scanning">סריקת קבלות חכמה</div>
+    </div>
+    <div class="sr sr-d2">
+      <div class="stat-val">100%</div>
+      <div class="stat-desc" data-he="עובד אופליין" data-en="Works offline">עובד אופליין</div>
+    </div>
+    <div class="sr sr-d3">
+      <div class="stat-val" data-he="חינם" data-en="Free">חינם</div>
+      <div class="stat-desc" data-he="ללא מנוי או פרסומות" data-en="No subscriptions or ads">ללא מנוי או פרסומות</div>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll('[data-he][data-en]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
-      });
+<!-- ═══════════════ USE CASES ═══════════════ -->
+<section class="usecases">
+  <div class="usecases-bg"></div>
+  <div class="sr"><div class="section-label" data-he="תרחישי שימוש" data-en="Use Cases">תרחישי שימוש</div></div>
+  <div class="section-title sr sr-d1" data-he="לכל סוג של טיול" data-en="For Every Kind of Trip">לכל סוג של טיול</div>
+  <div class="section-subtitle sr sr-d2" data-he="בין אם זה סופ״ש עם חברים או חופשה משפחתית — Xpensy מסדר את הכסף." data-en="Whether it's a weekend with friends or a family vacation — Xpensy handles the money.">בין אם זה סופ״ש עם חברים או חופשה משפחתית — Xpensy מסדר את הכסף.</div>
+  <div class="usecases-grid">
+    <div class="usecase-card sr">
+      <span class="usecase-emoji">🇪🇸</span>
+      <h4 data-he="סופ״ש בברצלונה" data-en="Weekend in Barcelona">סופ״ש בברצלונה</h4>
+      <p data-he="4 חברים, 3 ימים, 47 הוצאות ב-EUR. כולל מסעדות, כניסה לסאגרדה פמיליה, ו-Uber משותפים. בסוף — Xpensy חילק הכל." data-en="4 friends, 3 days, 47 expenses in EUR. Restaurants, Sagrada Familia tickets, shared Ubers. At the end — Xpensy split it all.">4 חברים, 3 ימים, 47 הוצאות ב-EUR. כולל מסעדות, כניסה לסאגרדה פמיליה, ו-Uber משותפים. בסוף — Xpensy חילק הכל.</p>
+      <div class="usecase-meta">
+        <span class="usecase-chip">EUR → ILS</span>
+        <span class="usecase-chip" data-he="4 משתתפים" data-en="4 members">4 משתתפים</span>
+      </div>
+    </div>
+    <div class="usecase-card sr sr-d1">
+      <span class="usecase-emoji">🇯🇵</span>
+      <h4 data-he="חופשה משפחתית ביפן" data-en="Family Vacation in Japan">חופשה משפחתית ביפן</h4>
+      <p data-he="משפחה של 5, שבועיים, 120+ הוצאות ב-JPY. רכבות שינקנסן, ריוקאנים, סושי ומקדשים. AI סרק את כל הקבלות." data-en="Family of 5, two weeks, 120+ expenses in JPY. Shinkansen trains, ryokans, sushi, and temples. AI scanned every receipt.">משפחה של 5, שבועיים, 120+ הוצאות ב-JPY. רכבות שינקנסן, ריוקאנים, סושי ומקדשים. AI סרק את כל הקבלות.</p>
+      <div class="usecase-meta">
+        <span class="usecase-chip">JPY → ILS</span>
+        <span class="usecase-chip" data-he="סריקת AI" data-en="AI Scan">סריקת AI</span>
+      </div>
+    </div>
+    <div class="usecase-card sr sr-d2">
+      <span class="usecase-emoji">🇹🇭</span>
+      <h4 data-he="בקפקינג בדרום-מזרח אסיה" data-en="Backpacking Southeast Asia">בקפקינג בדרום-מזרח אסיה</h4>
+      <p data-he="3 חברים, חודש, 3 מדינות, 3 מטבעות שונים. אין אינטרנט באיים? Xpensy עובד אופליין ומסנכרן אחר כך." data-en="3 friends, one month, 3 countries, 3 currencies. No internet on the islands? Xpensy works offline and syncs later.">3 חברים, חודש, 3 מדינות, 3 מטבעות שונים. אין אינטרנט באיים? Xpensy עובד אופליין ומסנכרן אחר כך.</p>
+      <div class="usecase-meta">
+        <span class="usecase-chip">THB · VND · KHR</span>
+        <span class="usecase-chip" data-he="אופליין" data-en="Offline">אופליין</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll('.lang-toggle button').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.includes(lang === 'he' ? 'עברית' : 'English'));
-      });
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="final-cta">
+  <div class="final-cta-bg"></div>
+  <h2 class="sr" data-he="הטיול הבא מתחיל כאן" data-en="Your Next Trip Starts Here">הטיול הבא מתחיל כאן</h2>
+  <p class="sub sr sr-d1" data-he="הורידו בחינם. ללא מנוי, ללא פרסומות, ללא הגבלות." data-en="Download for free. No subscriptions, no ads, no limits.">הורידו בחינם. ללא מנוי, ללא פרסומות, ללא הגבלות.</p>
+  <div class="sr sr-d2">
+    <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-he="הורדה מ-App Store" data-en="Download on App Store">הורדה מ-App Store</span>
+    </a>
+    <div class="free-badge" data-he="חינם לחלוטין · ללא פרסומות" data-en="Completely free · No ads">חינם לחלוטין · ללא פרסומות</div>
+  </div>
+</section>
 
-      localStorage.setItem('xpensy-lang', lang);
-    }
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-links">
+    <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
+    <a href="/terms" data-he="תנאי שימוש" data-en="Terms of Service">תנאי שימוש</a>
+    <a href="mailto:erezults@gmail.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
+    <a href="https://www.erezults.com">E-REZULTS</a>
+  </div>
+  <div class="footer-copy">&copy; 2022–2026 E-REZULTS · Erez Cohen</div>
+</footer>
 
-    // Load saved language
-    const savedLang = localStorage.getItem('xpensy-lang');
-    if (savedLang) setLang(savedLang);
+<script>
+  // ═══ LANGUAGE ═══
+  function setLang(lang) {
+    document.documentElement.lang = lang === 'he' ? 'he' : 'en';
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    document.title = lang === 'he' ? 'Xpensy — ניהול הוצאות חכם לטיולים' : 'Xpensy — Smart Trip Expense Tracker';
+    document.querySelectorAll('[data-he][data-en]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
+    document.querySelectorAll('.lang-toggle button').forEach(btn =>
+      btn.classList.toggle('active', (lang === 'he' && btn.textContent === 'עברית') || (lang === 'en' && btn.textContent === 'English'))
+    );
+    localStorage.setItem('xpensy-lang', lang);
+  }
+  const saved = localStorage.getItem('xpensy-lang');
+  if (saved) setLang(saved);
 
-    // ─── Scroll Reveal ───
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // ═══ SCROLL REVEAL ═══
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.sr').forEach(el => observer.observe(el));
 
-    // ─── Lang Toggle Scroll Style ───
-    window.addEventListener('scroll', () => {
-      document.getElementById('langToggle').classList.toggle('scrolled', window.scrollY > 100);
+  // ═══ COUNTER ANIMATION ═══
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.count);
+      if (!target) return;
+      let current = 0;
+      const step = Math.ceil(target / 40);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current + '+';
+      }, 30);
+      counterObserver.unobserve(el);
     });
-  </script>
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+</script>
 </body>
 </html>
