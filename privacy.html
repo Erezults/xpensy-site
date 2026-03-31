@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Xpensy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/app-icon.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: #faf9fb; color: #1a1a2e; line-height: 1.7; }
+    .header { text-align: center; padding: 60px 24px 40px; background: linear-gradient(160deg, #1a0e2e 0%, #2d1b4e 40%, #3b2870 100%); color: #fff; }
+    .header h1 { font-family: 'Rubik', sans-serif; font-size: 36px; font-weight: 800; }
+    .header p { opacity: 0.5; margin-top: 8px; font-size: 14px; }
+    .header .home-link { display: inline-block; margin-bottom: 16px; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; }
+    .header .home-link:hover { color: #a78bfa; }
+    .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+    h2 { font-family: 'Rubik', sans-serif; font-size: 20px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; color: #3b3086; }
+    h3 { font-size: 16px; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
+    p, li { font-size: 15px; margin-bottom: 8px; }
+    ul { padding-left: 24px; }
+    a { color: #6c5ce7; }
+    .back { display: inline-block; margin-top: 40px; color: #6c5ce7; text-decoration: none; font-weight: 600; font-family: 'Rubik', sans-serif; }
+    .back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="/" class="home-link">&larr; Xpensy</a>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: March 31, 2026</p>
+  </div>
+  <div class="content">
+
+    <h2>1. Introduction</h2>
+    <p>Xpensy ("the App") is a group travel expense tracking application developed by Erez Cohen, operating under E-REZULTS ("we", "us", "our"). This Privacy Policy explains how we collect, use, store, and protect your personal information when you use the App.</p>
+
+    <h2>2. Information We Collect</h2>
+
+    <h3>2.1 Account Information</h3>
+    <ul>
+      <li><strong>Email address</strong> — used for authentication and account recovery</li>
+      <li><strong>Display name</strong> — shown to other trip members</li>
+      <li><strong>Authentication tokens</strong> — for secure session management</li>
+    </ul>
+
+    <h3>2.2 Trip & Expense Data</h3>
+    <ul>
+      <li>Trip details (name, destination, dates, currency settings)</li>
+      <li>Expense records (amount, category, description, date, who paid)</li>
+      <li>Custom expense categories you create</li>
+      <li>Trip member information (names, roles, permissions)</li>
+      <li>Trip folders and organizational preferences</li>
+    </ul>
+
+    <h3>2.3 Receipt Images</h3>
+    <ul>
+      <li>Photos of receipts you upload for expense tracking</li>
+      <li>Images are compressed before upload (max 1200px, JPEG quality 30%)</li>
+      <li>Stored securely in our cloud storage</li>
+    </ul>
+
+    <h3>2.4 Usage Analytics</h3>
+    <ul>
+      <li>Session duration and pages visited (screen names only)</li>
+      <li>Action counts (e.g., number of expenses added)</li>
+      <li>No personally identifiable information is included in analytics</li>
+      <li><strong>You can opt out of analytics tracking in Settings</strong></li>
+    </ul>
+
+    <h3>2.5 Information We Do NOT Collect</h3>
+    <ul>
+      <li>Location data</li>
+      <li>Contact list</li>
+      <li>Calendar data</li>
+      <li>Advertising identifiers (IDFA)</li>
+      <li>Health or biometric data</li>
+      <li>Browsing history</li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <ul>
+      <li><strong>Core functionality</strong> — tracking and splitting trip expenses among group members</li>
+      <li><strong>AI receipt parsing</strong> — receipt images are sent to Google Gemini API to extract expense data (amount, category, description). Images are processed in real-time and not stored by the AI provider.</li>
+      <li><strong>Authentication</strong> — verifying your identity via email/password, Apple Sign-In, or Google OAuth</li>
+      <li><strong>App improvement</strong> — anonymous usage analytics help us improve the user experience (opt-out available)</li>
+    </ul>
+
+    <h2>4. Data Storage & Security</h2>
+    <ul>
+      <li>All data is stored on <strong>Supabase</strong> (PostgreSQL database hosted on AWS, EU region)</li>
+      <li>All network communication uses <strong>HTTPS/TLS encryption</strong></li>
+      <li>Authentication credentials are stored in the <strong>iOS Keychain</strong> (hardware-encrypted)</li>
+      <li>Local cache data is encrypted using <strong>MMKV with encryption</strong></li>
+      <li>Passwords are hashed before any local storage</li>
+    </ul>
+
+    <h2>5. Data Sharing</h2>
+    <p>We do not sell, rent, or trade your personal data. Your data may be shared in these limited cases:</p>
+    <ul>
+      <li><strong>Trip members</strong> — other members of your trips can see shared expense data</li>
+      <li><strong>Google Gemini API</strong> — receipt images are sent for AI processing (not stored by Google)</li>
+      <li><strong>Supabase</strong> — our database and authentication provider</li>
+      <li><strong>Legal requirements</strong> — if required by law or legal process</li>
+    </ul>
+
+    <h2>6. Data Retention</h2>
+    <ul>
+      <li>Your data is retained as long as your account is active</li>
+      <li>Offline cache expires after 7 days</li>
+      <li>Usage analytics sessions are retained for product improvement purposes</li>
+    </ul>
+
+    <h2>7. Account Deletion</h2>
+    <p>You can delete your account at any time from <strong>Settings → Delete Account</strong>. This will:</p>
+    <ul>
+      <li>Permanently delete your profile and personal data</li>
+      <li>Delete all expenses you created</li>
+      <li>Remove you from all trips</li>
+      <li>Delete your authentication record</li>
+      <li>Clear all locally cached data</li>
+    </ul>
+    <p>Account deletion is irreversible. If you are a trip admin, you will be prompted to transfer admin rights before deletion.</p>
+
+    <h2>8. Children's Privacy</h2>
+    <p>Xpensy is not intended for children under 13. We do not knowingly collect information from children under 13. If you believe a child has provided us with personal data, please contact us.</p>
+
+    <h2>9. Third-Party Services</h2>
+    <ul>
+      <li><strong>Supabase</strong> — database, authentication, and file storage (<a href="https://supabase.com/privacy">supabase.com/privacy</a>)</li>
+      <li><strong>Google Gemini API</strong> — AI-powered receipt parsing (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
+      <li><strong>Apple Sign-In</strong> — authentication (<a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
+      <li><strong>Google OAuth</strong> — authentication (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
+      <li><strong>Expo</strong> — over-the-air updates (<a href="https://expo.dev/privacy">expo.dev/privacy</a>)</li>
+    </ul>
+
+    <h2>10. Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access your personal data (visible in the app)</li>
+      <li>Correct inaccurate data (edit your profile in Settings)</li>
+      <li>Delete your account and all associated data</li>
+      <li>Opt out of analytics tracking (Settings → toggle)</li>
+      <li>Export your data (contact us)</li>
+    </ul>
+
+    <h2>11. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>12. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, contact us at:</p>
+    <ul>
+      <li>Email: <a href="mailto:erezults@gmail.com">erezults@gmail.com</a></li>
+      <li>Website: <a href="https://www.erezults.com">www.erezults.com</a></li>
+    </ul>
+
+    <a href="/" class="back">← Back to Xpensy</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xpensy — ניהול הוצאות חכם לטיולים</title>
+  <meta name="description" content="Xpensy - Smart group expense tracking for trips. Split costs, scan receipts with AI, track budgets.">
+  <meta name="apple-itunes-app" content="app-id=6761180051">
+  <link rel="icon" type="image/png" href="images/app-icon.png">
+  <link rel="apple-touch-icon" href="images/app-icon.png">
+  <meta property="og:title" content="Xpensy — Smart Trip Expense Tracker">
+  <meta property="og:description" content="Track group trip expenses, scan receipts with AI, split costs automatically.">
+  <meta property="og:image" content="https://xpensy.erezults.com/images/home-screen.png">
+  <meta property="og:url" content="https://xpensy.erezults.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-deep: #231937;
+      --purple-mid: #3b3086;
+      --purple-vivid: #6c5ce7;
+      --purple-light: #a78bfa;
+      --purple-glow: #c4b5fd;
+      --surface: #faf9fb;
+      --text: #1a1a2e;
+      --text-secondary: #6b6882;
+      --white: #ffffff;
+      --gradient-hero: linear-gradient(160deg, #1a0e2e 0%, #2d1b4e 40%, #3b2870 70%, #4a3590 100%);
+      --gradient-accent: linear-gradient(135deg, #6c5ce7, #a78bfa);
+      --radius: 24px;
+      --font-display: 'Rubik', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Language Toggle ─── */
+    .lang-toggle {
+      position: fixed; top: 20px; left: 20px; z-index: 1000;
+      background: rgba(255,255,255,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 40px;
+      padding: 6px; display: flex; gap: 4px;
+      transition: all 0.3s;
+    }
+    .lang-toggle.scrolled { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.08); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .lang-toggle button {
+      border: none; background: transparent; padding: 8px 16px; border-radius: 30px;
+      font-family: var(--font-display); font-weight: 600; font-size: 13px; cursor: pointer;
+      color: rgba(255,255,255,0.6); transition: all 0.3s;
+    }
+    .lang-toggle.scrolled button { color: var(--text-secondary); }
+    .lang-toggle button.active {
+      background: var(--purple-vivid); color: var(--white) !important;
+      box-shadow: 0 2px 12px rgba(108,92,231,0.4);
+    }
+
+    /* ─── Hero Section ─── */
+    .hero {
+      background: var(--gradient-hero);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; padding: 60px 24px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(108,92,231,0.15), transparent),
+                  radial-gradient(ellipse 50% 40% at 70% 70%, rgba(167,139,250,0.1), transparent);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative; z-index: 2; display: flex; align-items: center; gap: 80px;
+      max-width: 1200px; width: 100%;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(108,92,231,0.2); border: 1px solid rgba(108,92,231,0.3);
+      border-radius: 40px; padding: 8px 20px; margin-bottom: 24px;
+      font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--purple-glow);
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 {
+      font-family: var(--font-display); font-size: clamp(42px, 6vw, 72px); font-weight: 900;
+      color: var(--white); line-height: 1.1; margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 span { background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub {
+      font-size: 18px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 480px; margin-bottom: 36px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--white); color: var(--purple-deep); padding: 16px 36px;
+      border-radius: 50px; text-decoration: none; font-family: var(--font-display);
+      font-weight: 700; font-size: 16px; transition: all 0.3s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .hero-cta svg { width: 24px; height: 24px; }
+    .hero-phone { flex-shrink: 0; position: relative; }
+
+    /* ─── iPhone Mockup ─── */
+    .phone-mockup {
+      width: 280px; height: 572px; border-radius: 44px; overflow: hidden;
+      background: #000; box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 8px rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .phone-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .phone-mockup.tall { height: 620px; }
+    .phone-glow {
+      position: absolute; width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,92,231,0.3), transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;
+      animation: glow-float 6s ease-in-out infinite;
+    }
+    @keyframes glow-float { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.15); } }
+
+    /* ─── Features Section ─── */
+    .features { padding: 120px 24px; background: var(--surface); }
+    .section-header { text-align: center; margin-bottom: 80px; }
+    .section-tag {
+      display: inline-block; font-family: var(--font-display); font-size: 13px; font-weight: 700;
+      color: var(--purple-vivid); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 16px;
+    }
+    .section-header h2 {
+      font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 800;
+      color: var(--text); line-height: 1.2;
+    }
+
+    .feature-row {
+      display: flex; align-items: center; gap: 80px; max-width: 1100px; margin: 0 auto 120px;
+    }
+    .feature-row.reverse { flex-direction: row-reverse; }
+    .feature-text { flex: 1; }
+    .feature-icon {
+      width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin-bottom: 20px;
+      background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(167,139,250,0.08));
+    }
+    .feature-text h3 { font-family: var(--font-display); font-size: 28px; font-weight: 800; margin-bottom: 12px; color: var(--text); }
+    .feature-text p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
+    .feature-phone { flex-shrink: 0; }
+
+    /* ─── Stats Bar ─── */
+    .stats-bar {
+      background: var(--gradient-hero); padding: 80px 24px;
+    }
+    .stats-grid {
+      max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center;
+    }
+    .stat-item .stat-number {
+      font-family: var(--font-display); font-size: 48px; font-weight: 900;
+      background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-item .stat-label { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 8px; font-weight: 500; }
+
+    /* ─── CTA Section ─── */
+    .cta-section {
+      padding: 120px 24px; text-align: center;
+      background: linear-gradient(180deg, var(--surface) 0%, #f0ebfa 100%);
+    }
+    .cta-section h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
+    .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-button {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--purple-vivid); color: var(--white); padding: 18px 40px;
+      border-radius: 50px; text-decoration: none; font-family: var(--font-display);
+      font-weight: 700; font-size: 17px; transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(108,92,231,0.35);
+    }
+    .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(108,92,231,0.45); }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--purple-deep); padding: 48px 24px; text-align: center;
+    }
+    footer .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; flex-wrap: wrap; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    footer a:hover { color: var(--purple-light); }
+    footer .copyright { color: rgba(255,255,255,0.25); font-size: 12px; }
+
+    /* ─── Scroll Animations ─── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .hero-content { flex-direction: column; text-align: center; gap: 48px; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; gap: 40px; }
+      .feature-icon { margin-left: auto; margin-right: auto; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .phone-mockup { width: 220px; height: 450px; border-radius: 36px; }
+      .phone-mockup.tall { height: 490px; }
+    }
+    @media (max-width: 480px) {
+      .phone-mockup { width: 180px; height: 370px; border-radius: 30px; }
+      .phone-mockup.tall { height: 400px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .stat-item .stat-number { font-size: 36px; }
+    }
+
+    /* ─── RTL adjustments for English ─── */
+    html[dir="ltr"] .hero-content { flex-direction: row-reverse; }
+    html[dir="ltr"] .feature-row { flex-direction: row-reverse; }
+    html[dir="ltr"] .feature-row.reverse { flex-direction: row; }
+    @media (max-width: 900px) {
+      html[dir="ltr"] .hero-content,
+      html[dir="ltr"] .feature-row,
+      html[dir="ltr"] .feature-row.reverse { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language Toggle -->
+  <div class="lang-toggle" id="langToggle">
+    <button class="active" onclick="setLang('he')">עברית</button>
+    <button onclick="setLang('en')">English</button>
+  </div>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <span data-he="זמין כעת ב-App Store" data-en="Available on the App Store">זמין כעת ב-App Store</span>
+        </div>
+        <h1>
+          <span data-he="ניהול הוצאות" data-en="Smart Expense">ניהול הוצאות</span><br>
+          <span data-he="חכם לטיולים" data-en="Tracking for Trips" style="background:none;-webkit-text-fill-color:rgba(255,255,255,0.85)">חכם לטיולים</span>
+        </h1>
+        <p class="hero-sub" data-he="עוקבים אחרי כל הוצאה, מחלקים בין חברים, סורקים קבלות עם AI — הכל במקום אחד, גם אופליין." data-en="Track every expense, split costs with friends, scan receipts with AI — all in one place, even offline.">עוקבים אחרי כל הוצאה, מחלקים בין חברים, סורקים קבלות עם AI — הכל במקום אחד, גם אופליין.</p>
+        <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="hero-cta">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span data-he="הורידו מה-App Store" data-en="Download on the App Store">הורידו מה-App Store</span>
+        </a>
+      </div>
+      <div class="hero-phone">
+        <div class="phone-glow"></div>
+        <div class="phone-mockup">
+          <img src="images/trip-hero.png" alt="Xpensy Trip Dashboard" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FEATURES ═══════════ -->
+  <section class="features">
+    <div class="section-header reveal">
+      <div class="section-tag" data-he="יכולות" data-en="Features">יכולות</div>
+      <h2 data-he="הכל מה שצריך לטיול מושלם" data-en="Everything You Need for the Perfect Trip">הכל מה שצריך לטיול מושלם</h2>
+    </div>
+
+    <!-- Feature 1: AI Receipt -->
+    <div class="feature-row reveal">
+      <div class="feature-text">
+        <div class="feature-icon">🤖</div>
+        <h3 data-he="סריקת קבלות עם AI" data-en="AI Receipt Scanning">סריקת קבלות עם AI</h3>
+        <p data-he="צלמו קבלה ו-AI יזהה אוטומטית את הסכום, הקטגוריה, התאריך ושם בית העסק. חוסך לכם זמן בכל הוצאה." data-en="Snap a receipt photo and AI automatically detects the amount, category, date, and merchant name. Saves you time on every expense.">צלמו קבלה ו-AI יזהה אוטומטית את הסכום, הקטגוריה, התאריך ושם בית העסק. חוסך לכם זמן בכל הוצאה.</p>
+      </div>
+      <div class="feature-phone">
+        <div class="phone-mockup"><img src="images/auth-screen.png" alt="Add Expense with AI" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Timeline -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-text">
+        <div class="feature-icon">📊</div>
+        <h3 data-he="ציר זמן וסטטיסטיקות" data-en="Timeline & Statistics">ציר זמן וסטטיסטיקות</h3>
+        <p data-he="ראו את כל ההוצאות לפי ציר זמן — לפני, במהלך ואחרי הטיול. גרפים וניתוחים לפי קטגוריות, ממוצע יומי ותקציב." data-en="View all expenses on a timeline — before, during, and after the trip. Charts and breakdowns by category, daily average, and budget.">ראו את כל ההוצאות לפי ציר זמן — לפני, במהלך ואחרי הטיול. גרפים וניתוחים לפי קטגוריות, ממוצע יומי ותקציב.</p>
+      </div>
+      <div class="feature-phone">
+        <div class="phone-mockup tall"><img src="images/timeline-screen.png" alt="Timeline" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Group Management -->
+    <div class="feature-row reveal">
+      <div class="feature-text">
+        <div class="feature-icon">👥</div>
+        <h3 data-he="ניהול קבוצה וחלוקת הוצאות" data-en="Group Management & Expense Splitting">ניהול קבוצה וחלוקת הוצאות</h3>
+        <p data-he="הזמינו חברים עם קוד או QR, חלקו הוצאות שווה או מותאם אישית, נהלו הרשאות — כל אחד רואה את מה שצריך." data-en="Invite friends with a code or QR, split expenses equally or custom, manage permissions — everyone sees what they need.">הזמינו חברים עם קוד או QR, חלקו הוצאות שווה או מותאם אישית, נהלו הרשאות — כל אחד רואה את מה שצריך.</p>
+      </div>
+      <div class="feature-phone">
+        <div class="phone-mockup"><img src="images/folder-grid.png" alt="Trip Groups" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Multi-currency -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-text">
+        <div class="feature-icon">💱</div>
+        <h3 data-he="רב-מטבעי אוטומטי" data-en="Automatic Multi-Currency">רב-מטבעי אוטומטי</h3>
+        <p data-he="תמיכה בכל המטבעות הנפוצים עם שערי חליפין עדכניים. הוצאה ב-THB? תראו אותה גם ב-ILS. הכל אוטומטי." data-en="Support for all major currencies with live exchange rates. Expense in THB? See it in USD too. Fully automatic.">תמיכה בכל המטבעות הנפוצים עם שערי חליפין עדכניים. הוצאה ב-THB? תראו אותה גם ב-ILS. הכל אוטומטי.</p>
+      </div>
+      <div class="feature-phone">
+        <div class="phone-mockup"><img src="images/trip-settings.png" alt="Trip Settings" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Feature 5: Offline -->
+    <div class="feature-row reveal">
+      <div class="feature-text">
+        <div class="feature-icon">✈️</div>
+        <h3 data-he="עובד גם אופליין" data-en="Works Offline Too">עובד גם אופליין</h3>
+        <p data-he="אין אינטרנט? אין בעיה. כל הנתונים נשמרים מקומית ומסתנכרנים אוטומטית כשחוזרים לרשת. אף הוצאה לא הולכת לאיבוד." data-en="No internet? No problem. All data is saved locally and syncs automatically when back online. No expense ever gets lost.">אין אינטרנט? אין בעיה. כל הנתונים נשמרים מקומית ומסתנכרנים אוטומטית כשחוזרים לרשת. אף הוצאה לא הולכת לאיבוד.</p>
+      </div>
+      <div class="feature-phone">
+        <div class="phone-mockup"><img src="images/statistics-screen.png" alt="Statistics" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ STATS BAR ═══════════ -->
+  <section class="stats-bar">
+    <div class="stats-grid reveal">
+      <div class="stat-item">
+        <div class="stat-number">∞</div>
+        <div class="stat-label" data-he="מטבעות נתמכים" data-en="Supported Currencies">מטבעות נתמכים</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">AI</div>
+        <div class="stat-label" data-he="סריקת קבלות חכמה" data-en="Smart Receipt Scanning">סריקת קבלות חכמה</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label" data-he="עובד אופליין" data-en="Works Offline">עובד אופליין</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-he="חינם" data-en="Free">חינם</div>
+        <div class="stat-label" data-he="ללא מנוי או פרסומות" data-en="No subscriptions or ads">ללא מנוי או פרסומות</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA ═══════════ -->
+  <section class="cta-section">
+    <div class="reveal">
+      <h2 data-he="מוכנים לטיול הבא?" data-en="Ready for Your Next Trip?">מוכנים לטיול הבא?</h2>
+      <p data-he="הורידו את Xpensy בחינם והתחילו לנהל הוצאות כמו מקצוענים." data-en="Download Xpensy for free and start managing expenses like a pro.">הורידו את Xpensy בחינם והתחילו לנהל הוצאות כמו מקצוענים.</p>
+      <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="cta-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-he="הורידו מה-App Store" data-en="Download on the App Store">הורידו מה-App Store</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="footer-links">
+      <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
+      <a href="/terms" data-he="תנאי שימוש" data-en="Terms of Service">תנאי שימוש</a>
+      <a href="mailto:erezults@gmail.com" data-he="צרו קשר" data-en="Contact Us">צרו קשר</a>
+      <a href="https://www.erezults.com">E-REZULTS</a>
+    </div>
+    <div class="copyright">&copy; 2022–2026 E-REZULTS | Erez Cohen</div>
+  </footer>
+
+  <script>
+    // ─── Language Switching ───
+    function setLang(lang) {
+      const html = document.documentElement;
+      html.lang = lang === 'he' ? 'he' : 'en';
+      html.dir = lang === 'he' ? 'rtl' : 'ltr';
+      document.title = lang === 'he' ? 'Xpensy — ניהול הוצאות חכם לטיולים' : 'Xpensy — Smart Trip Expense Tracker';
+
+      document.querySelectorAll('[data-he][data-en]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+
+      document.querySelectorAll('.lang-toggle button').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(lang === 'he' ? 'עברית' : 'English'));
+      });
+
+      localStorage.setItem('xpensy-lang', lang);
+    }
+
+    // Load saved language
+    const savedLang = localStorage.getItem('xpensy-lang');
+    if (savedLang) setLang(savedLang);
+
+    // ─── Scroll Reveal ───
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ─── Lang Toggle Scroll Style ───
+    window.addEventListener('scroll', () => {
+      document.getElementById('langToggle').classList.toggle('scrolled', window.scrollY > 100);
+    });
+  </script>
+</body>
+</html>
