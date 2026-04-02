@@ -30,12 +30,12 @@
   <div class="header">
     <a href="/" class="home-link">&larr; Xpensy</a>
     <h1>Privacy Policy</h1>
-    <p>Last updated: March 31, 2026</p>
+    <p>Last updated: April 2, 2026</p>
   </div>
   <div class="content">
 
     <h2>1. Introduction</h2>
-    <p>Xpensy ("the App") is a group travel expense tracking application developed by Erez Cohen, operating under E-REZULTS ("we", "us", "our"). This Privacy Policy explains how we collect, use, store, and protect your personal information when you use the App.</p>
+    <p>Xpensy ("the App") is a group travel expense tracking application developed by Erez Cohen, operating under E-REZULTS ("we", "us", "our"). This Privacy Policy explains how we collect, use, store, and protect your personal information when you use the App on iPhone, iPad, Apple Watch, or Mac.</p>
 
     <h2>2. Information We Collect</h2>
 
@@ -50,9 +50,14 @@
     <ul>
       <li>Trip details (name, destination, dates, currency settings)</li>
       <li>Expense records (amount, category, description, date, who paid)</li>
-      <li>Custom expense categories you create</li>
+      <li>Custom expense categories and freeform tags/labels you create</li>
       <li>Trip member information (names, roles, permissions)</li>
       <li>Trip folders and organizational preferences</li>
+      <li>Recurring expense schedules</li>
+      <li>Expense templates you save for reuse</li>
+      <li>Comments and discussions on expenses</li>
+      <li>Settlement and debt records between members</li>
+      <li>Change history (audit log) of expense modifications</li>
     </ul>
 
     <h3>2.3 Receipt Images</h3>
@@ -60,6 +65,7 @@
       <li>Photos of receipts you upload for expense tracking</li>
       <li>Images are compressed before upload (max 1200px, JPEG quality 30%)</li>
       <li>Stored securely in our cloud storage</li>
+      <li>Images shared via the iOS Share Extension from other apps (e.g., WhatsApp, email) are processed in the same manner</li>
     </ul>
 
     <h3>2.4 Usage Analytics</h3>
@@ -68,24 +74,43 @@
       <li>Action counts (e.g., number of expenses added)</li>
       <li>No personally identifiable information is included in analytics</li>
       <li><strong>You can opt out of analytics tracking in Settings</strong></li>
+      <li>If you deny the App Tracking Transparency (ATT) prompt, all analytics tracking is disabled</li>
     </ul>
 
-    <h3>2.5 Information We Do NOT Collect</h3>
+    <h3>2.5 Device & Diagnostic Data</h3>
     <ul>
-      <li>Location data</li>
-      <li>Contact list</li>
-      <li>Calendar data</li>
-      <li>Advertising identifiers (IDFA)</li>
-      <li>Health or biometric data</li>
-      <li>Browsing history</li>
+      <li><strong>Push notification token</strong> — a device identifier used to deliver push notifications (stored on our server, linked to your account)</li>
+      <li><strong>Crash reports and diagnostics</strong> — sent to Sentry for stability improvements. These may include device model, OS version, and stack traces. No personal expense data is included.</li>
     </ul>
+
+    <h3>2.6 On-Device Data (Not Sent to Our Servers)</h3>
+    <p>The following data is processed or stored only on your device and is <strong>never transmitted</strong> to our servers:</p>
+    <ul>
+      <li><strong>Biometric data (Face ID / Touch ID)</strong> — used solely for local app unlock via iOS system APIs. We never access, store, or transmit biometric data.</li>
+      <li><strong>Location data</strong> — used only to auto-detect your country and suggest a local currency. Location is processed on-device via reverse geocoding and is not stored or sent to our servers. You will be asked for permission before any location access.</li>
+      <li><strong>Contacts</strong> — accessed only when you choose to invite friends to a trip. Contact data is used on-device to compose an invitation message and is never uploaded or stored by us.</li>
+      <li><strong>Calendar</strong> — accessed only when you explicitly choose to add trip dates to your device calendar. Calendar data is never read or uploaded by us.</li>
+      <li><strong>Spotlight index</strong> — trip and expense data is indexed locally on your device for iOS Spotlight Search. This data stays on-device.</li>
+      <li><strong>Widget and Live Activity data</strong> — budget summaries and last expense info are shared with the Xpensy home screen widget and Dynamic Island via App Groups (on-device only).</li>
+      <li><strong>Apple Watch data</strong> — trip budget and recent expenses are synced to the Xpensy Apple Watch app via WatchConnectivity (device-to-device, not via our servers).</li>
+      <li><strong>Handoff / Continuity data</strong> — activity state (which screen you are viewing) is shared between your devices via Apple's Handoff framework for seamless multitasking.</li>
+      <li><strong>Siri interaction data</strong> — Siri Shortcuts are registered on-device for voice commands. We do not access Siri audio or transcripts.</li>
+    </ul>
+
+    <h3>2.7 iCloud Backup</h3>
+    <p>If enabled, your app preferences (theme, language, notification settings, custom categories, selected app icon) are backed up to your personal iCloud account via Apple's iCloud Key-Value Storage. This data is encrypted by Apple and governed by Apple's privacy policy. We do not have access to your iCloud data.</p>
+
+    <h3>2.8 Purchase Data</h3>
+    <p>If you make in-app purchases, transaction data is processed by Apple's App Store and RevenueCat (our subscription management provider). We receive a record of your subscription status but do not have access to your payment method or billing details.</p>
 
     <h2>3. How We Use Your Information</h2>
     <ul>
       <li><strong>Core functionality</strong> — tracking and splitting trip expenses among group members</li>
-      <li><strong>AI receipt parsing</strong> — receipt images are sent to Google Gemini API to extract expense data (amount, category, description). Images are processed in real-time and not stored by the AI provider.</li>
+      <li><strong>AI receipt parsing</strong> — receipt images are sent to Google Gemini API to extract expense data (amount, category, description). A consent dialog is shown before any image is sent. Images are processed in real-time and not stored by the AI provider.</li>
       <li><strong>Authentication</strong> — verifying your identity via email/password, Apple Sign-In, or Google OAuth</li>
-      <li><strong>App improvement</strong> — anonymous usage analytics help us improve the user experience (opt-out available)</li>
+      <li><strong>Push notifications</strong> — sending you alerts about new expenses, trip invitations, and budget warnings (configurable per notification type in Settings)</li>
+      <li><strong>Background sync</strong> — syncing pending offline data, refreshing exchange rates, and checking budget alerts when the app is in the background</li>
+      <li><strong>App improvement</strong> — anonymous usage analytics and crash reports help us improve the user experience (opt-out available)</li>
     </ul>
 
     <h2>4. Data Storage & Security</h2>
@@ -95,14 +120,17 @@
       <li>Authentication credentials are stored in the <strong>iOS Keychain</strong> (hardware-encrypted)</li>
       <li>Local cache data is encrypted using <strong>MMKV with encryption</strong></li>
       <li>Passwords are hashed before any local storage</li>
+      <li>App Groups are used for secure on-device data sharing between the main app, widgets, Apple Watch, and Share Extension</li>
     </ul>
 
     <h2>5. Data Sharing</h2>
     <p>We do not sell, rent, or trade your personal data. Your data may be shared in these limited cases:</p>
     <ul>
-      <li><strong>Trip members</strong> — other members of your trips can see shared expense data</li>
-      <li><strong>Google Gemini API</strong> — receipt images are sent for AI processing (not stored by Google)</li>
+      <li><strong>Trip members</strong> — other members of your trips can see shared expense data, comments, and settlement information</li>
+      <li><strong>Google Gemini API</strong> — receipt images are sent for AI processing (only with your consent; not stored by Google)</li>
       <li><strong>Supabase</strong> — our database and authentication provider</li>
+      <li><strong>Sentry</strong> — crash reports and diagnostics for app stability (<a href="https://sentry.io/privacy/">Sentry Privacy Policy</a>)</li>
+      <li><strong>RevenueCat</strong> — subscription and purchase management (<a href="https://www.revenuecat.com/privacy">RevenueCat Privacy Policy</a>)</li>
       <li><strong>Legal requirements</strong> — if required by law or legal process</li>
     </ul>
 
@@ -110,6 +138,8 @@
     <ul>
       <li>Your data is retained as long as your account is active</li>
       <li>Offline cache expires after 7 days</li>
+      <li>Audit log entries (change history) are retained for the lifetime of the associated trip</li>
+      <li>Crash reports are retained by Sentry for 90 days</li>
       <li>Usage analytics sessions are retained for product improvement purposes</li>
     </ul>
 
@@ -120,7 +150,8 @@
       <li>Delete all expenses you created</li>
       <li>Remove you from all trips</li>
       <li>Delete your authentication record</li>
-      <li>Clear all locally cached data</li>
+      <li>Remove your push notification token</li>
+      <li>Clear all locally cached data, Spotlight index, widget data, and iCloud backup</li>
     </ul>
     <p>Account deletion is irreversible. If you are a trip admin, you will be prompted to transfer admin rights before deletion.</p>
 
@@ -134,6 +165,10 @@
       <li><strong>Apple Sign-In</strong> — authentication (<a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
       <li><strong>Google OAuth</strong> — authentication (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
       <li><strong>Expo</strong> — over-the-air updates (<a href="https://expo.dev/privacy">expo.dev/privacy</a>)</li>
+      <li><strong>Sentry</strong> — crash reporting and diagnostics (<a href="https://sentry.io/privacy/">sentry.io/privacy</a>)</li>
+      <li><strong>RevenueCat</strong> — in-app purchase and subscription management (<a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a>)</li>
+      <li><strong>Apple iCloud</strong> — settings backup via iCloud Key-Value Storage (<a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
+      <li><strong>Apple MapKit</strong> — map display for trip locations (processed on-device; <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
     </ul>
 
     <h2>10. Your Rights</h2>
@@ -143,6 +178,10 @@
       <li>Correct inaccurate data (edit your profile in Settings)</li>
       <li>Delete your account and all associated data</li>
       <li>Opt out of analytics tracking (Settings → toggle)</li>
+      <li>Deny or revoke tracking permission via App Tracking Transparency</li>
+      <li>Revoke AI receipt processing consent at any time in Settings</li>
+      <li>Disable push notifications (Settings → Notifications, or iOS Settings)</li>
+      <li>Revoke location, contacts, calendar, or camera permissions at any time via iOS Settings</li>
       <li>Export your data (contact us)</li>
     </ul>
 
@@ -156,7 +195,7 @@
       <li>Website: <a href="https://www.erezults.com">www.erezults.com</a></li>
     </ul>
 
-    <a href="/" class="back">← Back to Xpensy</a>
+    <a href="/" class="back">&larr; Back to Xpensy</a>
   </div>
 </body>
 </html>
