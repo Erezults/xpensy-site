@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Xpensy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/app-icon.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: #faf9fb; color: #1a1a2e; line-height: 1.7; }
+    .header { text-align: center; padding: 60px 24px 40px; background: linear-gradient(160deg, #1a0e2e 0%, #2d1b4e 40%, #3b2870 100%); color: #fff; }
+    .header h1 { font-family: 'Rubik', sans-serif; font-size: 36px; font-weight: 800; }
+    .header p { opacity: 0.5; margin-top: 8px; font-size: 14px; }
+    .header .home-link { display: inline-block; margin-bottom: 16px; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; }
+    .header .home-link:hover { color: #a78bfa; }
+    .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+    .contact-card { background: linear-gradient(135deg, #3b2870, #6c5ce7); border-radius: 16px; padding: 32px; color: #fff; margin-bottom: 40px; text-align: center; }
+    .contact-card h2 { font-family: 'Rubik', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .contact-card p { opacity: 0.85; font-size: 15px; margin-bottom: 20px; }
+    .contact-card a { display: inline-block; background: #fff; color: #3b2870; font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 15px; padding: 12px 28px; border-radius: 10px; text-decoration: none; }
+    .contact-card a:hover { background: #f0eeff; }
+    h2 { font-family: 'Rubik', sans-serif; font-size: 20px; font-weight: 700; margin-top: 40px; margin-bottom: 16px; color: #3b3086; }
+    .faq-item { border: 1px solid #e8e4f3; border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; background: #fff; }
+    .faq-item h3 { font-family: 'Rubik', sans-serif; font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; }
+    .faq-item p { font-size: 14px; color: #555; line-height: 1.6; }
+    .faq-item a { color: #6c5ce7; }
+    .back { display: inline-block; margin-top: 40px; color: #6c5ce7; text-decoration: none; font-weight: 600; font-family: 'Rubik', sans-serif; }
+    .back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="/" class="home-link">&larr; Xpensy</a>
+    <h1>Support</h1>
+    <p>We're here to help</p>
+  </div>
+  <div class="content">
+
+    <div class="contact-card">
+      <h2>Contact Us</h2>
+      <p>Have a question or need help? Send us an email and we'll get back to you within 1–2 business days.</p>
+      <a href="mailto:support@erezults.com">support@erezults.com</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>How do I create a trip?</h3>
+      <p>Tap the + button on the home screen and select "New Trip". Enter the trip name, destination, and travel dates, then invite your travel companions by email.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I add an expense?</h3>
+      <p>Inside a trip, tap the + button to add an expense manually, or use the AI receipt scanner to automatically extract the amount, date, and category from a photo of your receipt.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How does AI receipt scanning work?</h3>
+      <p>Take a photo of a receipt or import one from your gallery. Xpensy uses Google Gemini to extract the total amount, currency, date, and merchant name — you can review and edit everything before saving.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How does expense splitting work?</h3>
+      <p>Xpensy tracks who paid for each expense and calculates balances automatically. On the trip's Balances screen you can see who owes whom and mark debts as settled.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I use the app offline?</h3>
+      <p>Yes. Xpensy is fully offline-first — you can add and edit expenses without an internet connection. Changes sync automatically when you reconnect.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I invite someone to my trip?</h3>
+      <p>Open the trip, go to Members, and tap "Invite". Enter their email address. They'll receive an invitation and can join once they create or log into their Xpensy account.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Is my data secure?</h3>
+      <p>Yes. All data is encrypted in transit (HTTPS) and at rest. We use Supabase with Row Level Security, so only you and your trip members can access your trip data. See our <a href="/privacy.html">Privacy Policy</a> for full details.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I delete my account?</h3>
+      <p>Go to Settings → Account → Delete Account. This permanently removes all your data, including trips and expenses. This action cannot be undone. You can also request deletion by emailing <a href="mailto:support@erezults.com">support@erezults.com</a>.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>The app isn't loading / I'm stuck on a spinner</h3>
+      <p>Force-quit the app and reopen it. If the issue persists, check your internet connection. If you're still stuck after reconnecting, please email us at <a href="mailto:support@erezults.com">support@erezults.com</a> with a description of what happened.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>I forgot my password</h3>
+      <p>On the login screen, tap "Forgot password?" and enter your email address. You'll receive a reset link within a few minutes. Check your spam folder if it doesn't arrive.</p>
+    </div>
+
+    <a href="/" class="back">&larr; Back to Xpensy</a>
+  </div>
+</body>
+</html>
