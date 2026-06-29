@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Xpensy — Account</title>
+  <link rel="icon" href="/images/app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #08060e; --bg-dark: #0d0a17; --bg-card: #13101f;
+      --bg-glass: rgba(255,255,255,0.04); --border-glass: rgba(255,255,255,0.08);
+      --purple: #8b5cf6; --purple-bright: #a78bfa; --purple-glow: rgba(139,92,246,0.25);
+      --cyan: #22d3ee; --emerald: #34d399; --danger: #f87171;
+      --text: #f1f0f5; --text-secondary: rgba(241,240,245,0.55); --text-muted: rgba(241,240,245,0.3);
+      --font-display: 'Outfit', sans-serif; --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body); background: var(--bg-deep); color: var(--text);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 24px; -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,0.16), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 90%, rgba(139,92,246,0.10), transparent);
+      background-attachment: fixed;
+    }
+    .card {
+      width: 100%; max-width: 440px; background: var(--bg-card);
+      border: 1px solid var(--border-glass); border-radius: 24px;
+      padding: 40px 32px; text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+    .logo { width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 22px; display: block; box-shadow: 0 0 30px var(--purple-glow); }
+    .icon { font-size: 46px; line-height: 1; margin-bottom: 18px; }
+    h1 { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 12px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.65; margin-bottom: 8px; }
+    p.sub { font-size: 13.5px; color: var(--text-muted); margin-top: 6px; }
+    .email { color: var(--purple-bright); font-weight: 600; word-break: break-all; }
+    .field { text-align: start; margin: 14px 0; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 7px; }
+    .field input {
+      width: 100%; background: var(--bg-glass); border: 1px solid var(--border-glass);
+      border-radius: 12px; padding: 14px 16px; color: var(--text); font-size: 15px;
+      font-family: var(--font-body); transition: border-color .25s;
+    }
+    .field input:focus { outline: none; border-color: var(--purple); }
+    .hint { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; text-align: start; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%; background: var(--text); color: var(--bg-deep);
+      padding: 15px 24px; border-radius: 14px; text-decoration: none; border: none; cursor: pointer;
+      font-family: var(--font-display); font-weight: 700; font-size: 15px;
+      transition: transform .2s, opacity .2s; margin-top: 18px;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.55; cursor: default; transform: none; }
+    .btn-ghost {
+      background: var(--bg-glass); color: var(--text-secondary); border: 1px solid var(--border-glass);
+      margin-top: 12px;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--purple); }
+    .err { color: var(--danger); font-size: 13.5px; margin-top: 14px; min-height: 18px; }
+    .spinner {
+      width: 34px; height: 34px; border: 3px solid var(--border-glass);
+      border-top-color: var(--purple-bright); border-radius: 50%;
+      margin: 8px auto 20px; animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .lang { display: flex; gap: 3px; justify-content: center; margin-top: 26px; }
+    .lang button {
+      border: 1px solid var(--border-glass); background: transparent; color: var(--text-muted);
+      padding: 6px 14px; border-radius: 30px; font-family: var(--font-display); font-weight: 600;
+      font-size: 12px; cursor: pointer; transition: all .25s;
+    }
+    .lang button.active { background: var(--purple); color: var(--text); border-color: transparent; }
+    .hidden { display: none !important; }
+    .home { display: inline-block; margin-top: 20px; color: var(--text-muted); font-size: 13px; text-decoration: none; }
+    .home:hover { color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/images/app-icon.png" alt="Xpensy" class="logo">
+
+    <!-- Loading -->
+    <div id="state-loading">
+      <div class="spinner"></div>
+      <h1 data-t="verifyingTitle">מאמתים…</h1>
+      <p data-t="verifyingBody">רק רגע, בודקים את הקישור.</p>
+    </div>
+
+    <!-- Signup confirmed -->
+    <div id="state-confirmed" class="hidden">
+      <div class="icon">✅</div>
+      <h1 data-t="confirmedTitle">האימייל אומת!</h1>
+      <p data-t="confirmedBody">החשבון שלך מוכן. פתחו את אפליקציית Xpensy והתחברו.</p>
+      <a class="btn" id="open-app-1" href="#" data-t="openApp">פתיחת Xpensy</a>
+      <a class="btn btn-ghost" href="https://apps.apple.com/app/id6761180051" data-t="getApp">הורדה מ-App Store</a>
+    </div>
+
+    <!-- Recovery: set new password -->
+    <div id="state-recovery" class="hidden">
+      <div class="icon">🔑</div>
+      <h1 data-t="recoveryTitle">בחירת סיסמה חדשה</h1>
+      <p data-t="recoveryBody">הזינו סיסמה חדשה לחשבון Xpensy שלכם.</p>
+      <div class="field">
+        <label for="pw1" data-t="newPasswordLabel">סיסמה חדשה</label>
+        <input id="pw1" type="password" autocomplete="new-password" placeholder="••••••••">
+        <div class="hint" data-t="passwordHint">לפחות 8 תווים.</div>
+      </div>
+      <div class="field">
+        <label for="pw2" data-t="confirmPasswordLabel">אימות סיסמה</label>
+        <input id="pw2" type="password" autocomplete="new-password" placeholder="••••••••">
+      </div>
+      <div class="err" id="recovery-err"></div>
+      <button class="btn" id="set-password-btn" data-t="setPassword">עדכון סיסמה</button>
+    </div>
+
+    <!-- Recovery success -->
+    <div id="state-recovery-done" class="hidden">
+      <div class="icon">✅</div>
+      <h1 data-t="recoveryDoneTitle">הסיסמה עודכנה!</h1>
+      <p data-t="recoveryDoneBody">פתחו את אפליקציית Xpensy והתחברו עם הסיסמה החדשה.</p>
+      <a class="btn" id="open-app-2" href="#" data-t="openApp">פתיחת Xpensy</a>
+      <a class="btn btn-ghost" href="https://apps.apple.com/app/id6761180051" data-t="getApp">הורדה מ-App Store</a>
+    </div>
+
+    <!-- Error / expired -->
+    <div id="state-error" class="hidden">
+      <div class="icon">⚠️</div>
+      <h1 data-t="errorTitle">הקישור אינו תקף</h1>
+      <p data-t="errorBody">ייתכן שהקישור פג תוקף או שכבר נעשה בו שימוש. חזרו לאפליקציה ובקשו קישור חדש.</p>
+      <p class="sub" id="error-detail"></p>
+      <a class="btn btn-ghost" href="https://apps.apple.com/app/id6761180051" data-t="getApp">הורדה מ-App Store</a>
+    </div>
+
+    <!-- Direct visit (no token) -->
+    <div id="state-none" class="hidden">
+      <div class="icon">📧</div>
+      <h1 data-t="noneTitle">דף אימות החשבון</h1>
+      <p data-t="noneBody">הגעתם לדף זה ישירות. אימות אימייל ואיפוס סיסמה נפתחים מהקישור שנשלח אליכם במייל.</p>
+      <a class="btn btn-ghost" href="https://apps.apple.com/app/id6761180051" data-t="getApp">הורדה מ-App Store</a>
+    </div>
+
+    <div class="lang">
+      <button id="lang-he" class="active" onclick="setLang('he')">עברית</button>
+      <button id="lang-en" onclick="setLang('en')">English</button>
+    </div>
+    <a class="home" href="/">xpensy.erezults.com</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    // ── Bilingual strings (HE default, matches site theme) ──────────────
+    var STR = {
+      he: {
+        verifyingTitle: 'מאמתים…', verifyingBody: 'רק רגע, בודקים את הקישור.',
+        confirmedTitle: 'האימייל אומת!', confirmedBody: 'החשבון שלך מוכן. פתחו את אפליקציית Xpensy והתחברו.',
+        recoveryTitle: 'בחירת סיסמה חדשה', recoveryBody: 'הזינו סיסמה חדשה לחשבון Xpensy שלכם.',
+        newPasswordLabel: 'סיסמה חדשה', confirmPasswordLabel: 'אימות סיסמה',
+        passwordHint: 'לפחות 8 תווים.', setPassword: 'עדכון סיסמה',
+        recoveryDoneTitle: 'הסיסמה עודכנה!', recoveryDoneBody: 'פתחו את אפליקציית Xpensy והתחברו עם הסיסמה החדשה.',
+        errorTitle: 'הקישור אינו תקף', errorBody: 'ייתכן שהקישור פג תוקף או שכבר נעשה בו שימוש. חזרו לאפליקציה ובקשו קישור חדש.',
+        noneTitle: 'דף אימות החשבון', noneBody: 'הגעתם לדף זה ישירות. אימות אימייל ואיפוס סיסמה נפתחים מהקישור שנשלח אליכם במייל.',
+        openApp: 'פתיחת Xpensy', getApp: 'הורדה מ-App Store',
+        errTooShort: 'הסיסמה חייבת להכיל לפחות 8 תווים.',
+        errMismatch: 'הסיסמאות אינן תואמות.', updating: 'מעדכנים…',
+      },
+      en: {
+        verifyingTitle: 'Verifying…', verifyingBody: 'One moment — checking your link.',
+        confirmedTitle: 'Email confirmed!', confirmedBody: 'Your account is ready. Open the Xpensy app and sign in.',
+        recoveryTitle: 'Choose a new password', recoveryBody: 'Enter a new password for your Xpensy account.',
+        newPasswordLabel: 'New password', confirmPasswordLabel: 'Confirm password',
+        passwordHint: 'At least 8 characters.', setPassword: 'Update password',
+        recoveryDoneTitle: 'Password updated!', recoveryDoneBody: 'Open the Xpensy app and sign in with your new password.',
+        errorTitle: 'This link is invalid', errorBody: 'It may have expired or already been used. Go back to the app and request a new link.',
+        noneTitle: 'Account verification page', noneBody: 'You reached this page directly. Email confirmation and password reset open from the link we email you.',
+        openApp: 'Open Xpensy', getApp: 'Download on the App Store',
+        errTooShort: 'Password must be at least 8 characters.',
+        errMismatch: 'Passwords do not match.', updating: 'Updating…',
+      }
+    };
+    var lang = 'he';
+    function applyLang() {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-t]').forEach(function (el) {
+        var k = el.getAttribute('data-t');
+        if (STR[lang][k]) el.textContent = STR[lang][k];
+      });
+      document.getElementById('lang-he').classList.toggle('active', lang === 'he');
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    }
+    function setLang(l) { lang = l; applyLang(); }
+
+    // ── Config (anon key is public — same key shipped in the app bundle) ──
+    var SUPABASE_URL = 'https://ocfchdjdhpwznyjswivc.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jZmNoZGpkaHB3em55anN3aXZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwODY4ODIsImV4cCI6MjA4OTY2Mjg4Mn0.n0d1fD4Vj_BCsJrvnADja-YbSSncP10ywUMYmZx7zJw';
+
+    function show(id) {
+      ['state-loading', 'state-confirmed', 'state-recovery', 'state-recovery-done', 'state-error', 'state-none']
+        .forEach(function (s) { document.getElementById(s).classList.toggle('hidden', s !== id); });
+    }
+
+    (function init() {
+      // Default to English when the browser is not Hebrew.
+      if ((navigator.language || '').slice(0, 2).toLowerCase() !== 'he') { lang = 'en'; }
+      applyLang();
+
+      var appLink = 'xpensy://';
+      document.getElementById('open-app-1').setAttribute('href', appLink);
+      document.getElementById('open-app-2').setAttribute('href', appLink);
+
+      var hash = new URLSearchParams((location.hash || '').replace(/^#/, ''));
+      var query = new URLSearchParams(location.search || '');
+      var errorCode = hash.get('error_code') || hash.get('error') || query.get('error_code') || query.get('error');
+      var errorDesc = hash.get('error_description') || query.get('error_description');
+      var type = hash.get('type') || query.get('type');
+      var accessToken = hash.get('access_token');
+      var refreshToken = hash.get('refresh_token');
+
+      var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        auth: { detectSessionInUrl: false, persistSession: false, autoRefreshToken: false }
+      });
+
+      // Wipe the token from the address bar so a refresh/share can't leak it.
+      function clearUrl() {
+        try { history.replaceState(null, '', location.pathname); } catch (e) {}
+      }
+
+      if (errorCode) {
+        var d = document.getElementById('error-detail');
+        if (errorDesc) d.textContent = decodeURIComponent(errorDesc.replace(/\+/g, ' '));
+        show('state-error');
+        clearUrl();
+        return;
+      }
+
+      if (type === 'recovery' && accessToken) {
+        sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken || '' })
+          .then(function (res) {
+            clearUrl();
+            if (res.error) { show('state-error'); return; }
+            show('state-recovery');
+            document.getElementById('pw1').focus();
+          })
+          .catch(function () { clearUrl(); show('state-error'); });
+
+        document.getElementById('set-password-btn').addEventListener('click', function () {
+          var btn = this;
+          var pw1 = document.getElementById('pw1').value;
+          var pw2 = document.getElementById('pw2').value;
+          var errEl = document.getElementById('recovery-err');
+          errEl.textContent = '';
+          if (pw1.length < 8) { errEl.textContent = STR[lang].errTooShort; return; }
+          if (pw1 !== pw2) { errEl.textContent = STR[lang].errMismatch; return; }
+          btn.disabled = true; btn.textContent = STR[lang].updating;
+          sb.auth.updateUser({ password: pw1 }).then(function (res) {
+            if (res.error) {
+              errEl.textContent = res.error.message;
+              btn.disabled = false; btn.textContent = STR[lang].setPassword;
+              return;
+            }
+            sb.auth.signOut().catch(function () {});
+            show('state-recovery-done');
+          }).catch(function (e) {
+            errEl.textContent = (e && e.message) || 'Error';
+            btn.disabled = false; btn.textContent = STR[lang].setPassword;
+          });
+        });
+        return;
+      }
+
+      if (accessToken) {
+        // signup / magiclink / email confirmation
+        clearUrl();
+        show('state-confirmed');
+        return;
+      }
+
+      show('state-none');
+    })();
+  </script>
+</body>
+</html>
