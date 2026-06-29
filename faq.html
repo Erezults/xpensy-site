@@ -36,23 +36,27 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--bg-deep); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
 
-    /* ═══ LANGUAGE TOGGLE ═══ */
-    .lang-toggle {
-      position: fixed; top: 24px; left: 24px; z-index: 100;
-      background: rgba(13,10,23,0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border-glass); border-radius: 40px;
-      padding: 4px; display: flex; gap: 2px;
-    }
-    .lang-toggle button {
-      border: none; background: transparent; padding: 10px 20px; border-radius: 36px;
-      font-family: var(--font-display); font-weight: 600; font-size: 13px; cursor: pointer;
-      color: var(--text-muted); transition: all 0.4s cubic-bezier(.4,0,.2,1); letter-spacing: 0.02em;
-    }
-    .lang-toggle button.active { background: var(--purple); color: var(--text); box-shadow: 0 0 24px var(--purple-glow); }
-    .lang-toggle button:hover:not(.active) { color: var(--text-secondary); }
+    /* ═══ HEADER ═══ */
+    .site-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px clamp(16px,4vw,44px); background: rgba(8,6,14,0.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass); }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; }
+    .brand b { font-family: var(--font-display); font-weight: 800; font-size: 19px; color: var(--text); letter-spacing: -0.01em; }
+    .site-nav { display: flex; align-items: center; gap: 2px; }
+    .site-nav a { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--text-secondary); text-decoration: none; padding: 8px 14px; border-radius: 30px; transition: all 0.3s; white-space: nowrap; }
+    .site-nav a:hover { color: var(--text); background: var(--bg-glass); }
+    .site-nav a.active { color: var(--purple-bright); }
+    .header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .header-lang { display: flex; gap: 2px; background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 30px; padding: 3px; }
+    .header-lang button { border: none; background: transparent; padding: 6px 12px; border-radius: 24px; font-family: var(--font-display); font-weight: 600; font-size: 12px; cursor: pointer; color: var(--text-muted); transition: all 0.3s; }
+    .header-lang button.active { background: var(--purple); color: var(--text); box-shadow: 0 0 18px var(--purple-glow); }
+    .header-dl { display: inline-flex; align-items: center; gap: 7px; background: var(--text); color: var(--bg-deep); padding: 9px 18px; border-radius: 30px; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 13px; transition: all 0.3s; }
+    .header-dl:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+    .header-dl svg { width: 16px; height: 16px; }
+    @media (max-width: 760px) { .brand b { display: none; } .header-dl span { display: none; } .header-dl { padding: 9px 12px; } .site-nav a { padding: 8px 9px; font-size: 13px; } }
+    @media (max-width: 440px) { .site-nav a { padding: 7px 7px; } .header-lang button { padding: 6px 9px; } }
 
     /* ═══ HEADER ═══ */
-    .faq-header { position: relative; overflow: hidden; padding: 120px 24px 60px; text-align: center; }
+    .faq-header { position: relative; overflow: hidden; padding: 84px 24px 56px; text-align: center; }
     .faq-header-bg {
       position: absolute; inset: 0;
       background:
@@ -134,7 +138,7 @@
     .footer-copy { color: rgba(255,255,255,0.15); font-size: 12px; }
 
     @media (max-width: 480px) {
-      .faq-header { padding: 100px 20px 48px; }
+      .faq-header { padding: 60px 20px 44px; }
       details.faq summary { font-size: 15px; padding: 18px 20px; }
       .footer-links { gap: 20px; }
     }
@@ -142,16 +146,29 @@
 </head>
 <body>
 
-<!-- ═══ LANGUAGE TOGGLE ═══ -->
-<div class="lang-toggle">
-  <button class="active" onclick="setLang('he')">עברית</button>
-  <button onclick="setLang('en')">English</button>
-</div>
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <a href="/" class="brand"><img src="images/app-icon.png" alt="Xpensy"><b>Xpensy</b></a>
+  <nav class="site-nav">
+    <a href="/" data-he="בית" data-en="Home">בית</a>
+    <a href="/subscriptions" data-he="מנויים" data-en="Plans">מנויים</a>
+    <a href="/faq" class="active" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
+  </nav>
+  <div class="header-right">
+    <div class="header-lang">
+      <button class="active" onclick="setLang('he')">עברית</button>
+      <button onclick="setLang('en')">English</button>
+    </div>
+    <a class="header-dl" href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-he="הורדה" data-en="Download">הורדה</span>
+    </a>
+  </div>
+</header>
 
 <!-- ═══ HEADER ═══ -->
 <header class="faq-header">
   <div class="faq-header-bg"></div>
-  <a href="/" class="home-link"><span data-he="חזרה ל-Xpensy" data-en="Back to Xpensy">חזרה ל-Xpensy</span></a>
   <div class="eyebrow" data-he="מרכז העזרה" data-en="Help Center">מרכז העזרה</div>
   <h1><span data-he="שאלות" data-en="Frequently Asked">שאלות</span> <span class="gradient" data-he="נפוצות" data-en="Questions">נפוצות</span></h1>
   <p data-he="כל מה שצריך לדעת על Xpensy — מטיולים וסריקת קבלות ועד מנויים, פרטיות וניהול החשבון." data-en="Everything you need to know about Xpensy — from trips and receipt scanning to subscriptions, privacy, and managing your account.">כל מה שצריך לדעת על Xpensy — מטיולים וסריקת קבלות ועד מנויים, פרטיות וניהול החשבון.</p>
@@ -289,9 +306,11 @@
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-links">
-    <a href="/" data-he="דף הבית" data-en="Home">דף הבית</a>
-    <a href="/privacy.html" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
-    <a href="/terms.html" data-he="תנאי שימוש" data-en="Terms of Service">תנאי שימוש</a>
+    <a href="/" data-he="בית" data-en="Home">בית</a>
+    <a href="/subscriptions" data-he="מנויים" data-en="Plans">מנויים</a>
+    <a href="/faq" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
+    <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy">מדיניות פרטיות</a>
+    <a href="/terms" data-he="תנאי שימוש" data-en="Terms">תנאי שימוש</a>
     <a href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
     <a href="https://www.erezults.com">E-REZULTS</a>
   </div>
@@ -305,7 +324,7 @@
     document.documentElement.dir = isHe ? 'rtl' : 'ltr';
     document.title = isHe ? 'שאלות נפוצות — Xpensy' : 'FAQ — Xpensy';
     document.querySelectorAll('[data-he][data-en]').forEach(el => el.innerHTML = el.getAttribute('data-' + lang));
-    document.querySelectorAll('.lang-toggle button').forEach(btn =>
+    document.querySelectorAll('.header-lang button').forEach(btn =>
       btn.classList.toggle('active', (isHe && btn.textContent === 'עברית') || (!isHe && btn.textContent === 'English'))
     );
     localStorage.setItem('xpensy-lang', lang);

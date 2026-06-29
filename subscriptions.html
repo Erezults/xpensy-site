@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מנויים — Xpensy Premium</title>
+  <meta name="description" content="Xpensy Premium — unlimited trips, unlimited AI receipt scanning, exports and advanced charts. Per-trip and group unlocks, plus Monthly, Yearly, and Lifetime plans.">
+  <meta name="apple-itunes-app" content="app-id=6761180051">
+  <link rel="icon" type="image/png" href="images/app-icon.png">
+  <link rel="apple-touch-icon" href="images/app-icon.png">
+  <meta property="og:title" content="Xpensy Premium — Plans">
+  <meta property="og:description" content="Unlimited trips, unlimited AI receipt scanning, exports and advanced charts. Per-trip and group unlocks, plus Monthly, Yearly, and Lifetime plans.">
+  <meta property="og:image" content="https://xpensy.erezults.com/images/og-image.png">
+  <meta property="og:url" content="https://xpensy.erezults.com/subscriptions">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #08060e; --bg-dark: #0d0a17; --bg-card: #13101f;
+      --bg-glass: rgba(255,255,255,0.04); --border-glass: rgba(255,255,255,0.08);
+      --purple: #8b5cf6; --purple-bright: #a78bfa; --purple-glow: rgba(139,92,246,0.25);
+      --cyan: #22d3ee; --emerald: #34d399;
+      --text: #f1f0f5; --text-secondary: rgba(241,240,245,0.55); --text-muted: rgba(241,240,245,0.3);
+      --font-display: 'Outfit', sans-serif; --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg-deep); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* ═══ HEADER ═══ */
+    .site-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px clamp(16px,4vw,44px); background: rgba(8,6,14,0.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass); }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; }
+    .brand b { font-family: var(--font-display); font-weight: 800; font-size: 19px; color: var(--text); letter-spacing: -0.01em; }
+    .site-nav { display: flex; align-items: center; gap: 2px; }
+    .site-nav a { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--text-secondary); text-decoration: none; padding: 8px 14px; border-radius: 30px; transition: all 0.3s; white-space: nowrap; }
+    .site-nav a:hover { color: var(--text); background: var(--bg-glass); }
+    .site-nav a.active { color: var(--purple-bright); }
+    .header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .header-lang { display: flex; gap: 2px; background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 30px; padding: 3px; }
+    .header-lang button { border: none; background: transparent; padding: 6px 12px; border-radius: 24px; font-family: var(--font-display); font-weight: 600; font-size: 12px; cursor: pointer; color: var(--text-muted); transition: all 0.3s; }
+    .header-lang button.active { background: var(--purple); color: var(--text); box-shadow: 0 0 18px var(--purple-glow); }
+    .header-dl { display: inline-flex; align-items: center; gap: 7px; background: var(--text); color: var(--bg-deep); padding: 9px 18px; border-radius: 30px; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 13px; transition: all 0.3s; }
+    .header-dl:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+    .header-dl svg { width: 16px; height: 16px; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: var(--bg-deep); padding: 16px 34px; border-radius: 50px; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 16px; transition: all 0.4s cubic-bezier(.4,0,.2,1); border: none; cursor: pointer; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,0.15); }
+    .btn-primary svg { width: 22px; height: 22px; }
+
+    /* ═══ INTRO ═══ */
+    .intro { position: relative; text-align: center; padding: clamp(56px,8vw,96px) 24px 30px; overflow: hidden; }
+    .intro-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 50% at 50% 0%, rgba(139,92,246,0.16), transparent), radial-gradient(ellipse 40% 30% at 80% 80%, rgba(34,211,238,0.05), transparent); }
+    .intro .eyebrow { position: relative; font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; color: var(--purple-bright); margin-bottom: 16px; }
+    .intro h1 { position: relative; font-family: var(--font-display); font-size: clamp(38px,6vw,60px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 18px; }
+    .intro p { position: relative; color: var(--text-secondary); font-size: 18px; line-height: 1.7; max-width: 580px; margin: 0 auto; }
+
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    /* ═══ FREE CARD ═══ */
+    .free-card { max-width: 760px; margin: 40px auto 16px; text-align: center; background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 26px 28px; }
+    .free-card strong { display: block; color: var(--text); font-weight: 700; font-family: var(--font-display); font-size: 16px; margin-bottom: 8px; }
+    .free-card span { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+
+    /* ═══ PERKS ═══ */
+    .perks-label { text-align: center; font-family: var(--font-display); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--purple-bright); margin: 44px 0 18px; }
+    .perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 860px; margin: 0 auto 12px; }
+    .perk { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 40px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.18); color: var(--purple-bright); font-size: 14px; font-weight: 600; font-family: var(--font-display); }
+
+    /* ═══ PLANS ═══ */
+    .plans-title { text-align: center; font-family: var(--font-display); font-size: clamp(24px,3.5vw,36px); font-weight: 800; letter-spacing: -0.02em; margin: 64px 0 8px; }
+    .plans-sub { text-align: center; color: var(--text-secondary); font-size: 15px; margin-bottom: 40px; }
+    .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .plan { position: relative; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 22px; padding: 30px 26px; transition: all 0.45s cubic-bezier(.4,0,.2,1); overflow: hidden; }
+    .plan:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+    .plan.featured { border-color: rgba(139,92,246,0.4); background: linear-gradient(165deg, rgba(139,92,246,0.12), var(--bg-card)); }
+    .plan .emoji { font-size: 30px; display: block; margin-bottom: 16px; }
+    .plan h3 { font-family: var(--font-display); font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+    .plan p { color: var(--text-secondary); font-size: 14px; line-height: 1.65; margin-bottom: 18px; }
+    .plan .tag { display: inline-block; font-size: 11px; font-weight: 700; font-family: var(--font-display); letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 12px; border-radius: 16px; background: rgba(139,92,246,0.12); color: var(--purple-bright); border: 1px solid rgba(139,92,246,0.18); }
+    .plan .ribbon { position: absolute; top: 16px; inset-inline-end: 16px; font-size: 10px; font-weight: 800; font-family: var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 11px; border-radius: 20px; background: var(--purple); color: #fff; box-shadow: 0 0 18px var(--purple-glow); }
+
+    /* ═══ FOOT CTA ═══ */
+    .foot-cta { text-align: center; padding: 80px 24px 40px; }
+    .note { color: var(--text-muted); font-size: 13px; line-height: 1.8; max-width: 640px; margin: 26px auto 0; }
+
+    /* ═══ FOOTER ═══ */
+    footer { padding: 46px 24px; border-top: 1px solid var(--border-glass); text-align: center; margin-top: 40px; }
+    .footer-links { display: flex; justify-content: center; gap: 26px; margin-bottom: 18px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--purple-bright); }
+    .footer-copy { color: rgba(255,255,255,0.15); font-size: 12px; }
+
+    @media (max-width: 820px) { .plans-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 760px) { .brand b { display: none; } .header-dl span { display: none; } .header-dl { padding: 9px 12px; } .site-nav a { padding: 8px 9px; font-size: 13px; } }
+    @media (max-width: 540px) { .plans-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; } }
+    @media (max-width: 440px) { .site-nav a { padding: 7px 7px; } .header-lang button { padding: 6px 9px; } }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <a href="/" class="brand"><img src="images/app-icon.png" alt="Xpensy"><b>Xpensy</b></a>
+  <nav class="site-nav">
+    <a href="/" data-he="בית" data-en="Home">בית</a>
+    <a href="/subscriptions" class="active" data-he="מנויים" data-en="Plans">מנויים</a>
+    <a href="/faq" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
+  </nav>
+  <div class="header-right">
+    <div class="header-lang">
+      <button class="active" onclick="setLang('he')">עברית</button>
+      <button onclick="setLang('en')">English</button>
+    </div>
+    <a class="header-dl" href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-he="הורדה" data-en="Download">הורדה</span>
+    </a>
+  </div>
+</header>
+
+<!-- ═══ INTRO ═══ -->
+<section class="intro">
+  <div class="intro-bg"></div>
+  <div class="eyebrow" data-he="מנויים ותכונות" data-en="Plans & Features">מנויים ותכונות</div>
+  <h1>Xpensy Premium</h1>
+  <p data-he="כל היסודות בחינם. משדרגים רק כשרוצים יותר — ובלי לאבד אף פעם שום נתון." data-en="All the essentials are free. Upgrade only when you want more — and never lose any of your data.">כל היסודות בחינם. משדרגים רק כשרוצים יותר — ובלי לאבד אף פעם שום נתון.</p>
+</section>
+
+<div class="wrap">
+  <!-- FREE -->
+  <div class="free-card">
+    <strong data-he="חינם, תמיד" data-en="Free, always">חינם, תמיד</strong>
+    <span data-he="עד 2 טיולים, חברים ללא הגבלה, הוצאות ידניות, חלוקה וסיכום חשבון, תמיכה ב-90+ מטבעות, עבודה אופליין, ומכסת סריקות קבלה ב-AI מדי חודש." data-en="Up to 2 trips, unlimited members, manual expenses, splitting &amp; settlement, 90+ currencies, offline mode, and a monthly allowance of free AI receipt scans.">עד 2 טיולים, חברים ללא הגבלה, הוצאות ידניות, חלוקה וסיכום חשבון, תמיכה ב-90+ מטבעות, עבודה אופליין, ומכסת סריקות קבלה ב-AI מדי חודש.</span>
+  </div>
+
+  <!-- PERKS -->
+  <div class="perks-label" data-he="מה Premium פותח" data-en="What Premium Unlocks">מה Premium פותח</div>
+  <div class="perks">
+    <span class="perk" data-he="✦ טיולים ללא הגבלה" data-en="✦ Unlimited trips">✦ טיולים ללא הגבלה</span>
+    <span class="perk" data-he="✦ סריקת קבלות ב-AI ללא הגבלה" data-en="✦ Unlimited AI receipt scanning">✦ סריקת קבלות ב-AI ללא הגבלה</span>
+    <span class="perk" data-he="✦ ייצוא לרואה חשבון (PDF)" data-en="✦ Accountant-ready export (PDF)">✦ ייצוא לרואה חשבון (PDF)</span>
+    <span class="perk" data-he="✦ גרפים וניתוחים מתקדמים" data-en="✦ Advanced charts &amp; analytics">✦ גרפים וניתוחים מתקדמים</span>
+  </div>
+
+  <!-- PLANS -->
+  <div class="plans-title" data-he="בוחרים איך לשדרג" data-en="Choose How to Upgrade">בוחרים איך לשדרג</div>
+  <div class="plans-sub" data-he="פתיחה חד-פעמית לטיול, לקבוצה, או מנוי — מה שמתאים לכם." data-en="A one-time unlock for a trip or group, or a subscription — whatever fits you.">פתיחה חד-פעמית לטיול, לקבוצה, או מנוי — מה שמתאים לכם.</div>
+
+  <div class="plans-grid">
+    <div class="plan">
+      <span class="emoji">🎟️</span>
+      <h3 data-he="פתיחת טיול" data-en="Per-Trip Unlock">פתיחת טיול</h3>
+      <p data-he="תשלום חד-פעמי שפותח טיול אחד — לכל חברי הקבוצה שבו." data-en="A one-time purchase that unlocks a single trip — for everyone in it.">תשלום חד-פעמי שפותח טיול אחד — לכל חברי הקבוצה שבו.</p>
+      <span class="tag" data-he="חד-פעמי" data-en="One-time">חד-פעמי</span>
+    </div>
+    <div class="plan">
+      <span class="emoji">👥</span>
+      <h3 data-he="פתיחה קבוצתית" data-en="Group Unlock">פתיחה קבוצתית</h3>
+      <p data-he="אדם אחד פותח את הטיול כולו — וכל הקבוצה נהנית מהתכונות." data-en="One person unlocks the whole trip — and the entire group gets the features.">אדם אחד פותח את הטיול כולו — וכל הקבוצה נהנית מהתכונות.</p>
+      <span class="tag" data-he="חד-פעמי" data-en="One-time">חד-פעמי</span>
+    </div>
+    <div class="plan">
+      <span class="emoji">🗓️</span>
+      <h3 data-he="מנוי חודשי" data-en="Monthly">מנוי חודשי</h3>
+      <p data-he="גישה מלאה לכל התכונות, מתחדש מדי חודש." data-en="Full access to everything, renews monthly.">גישה מלאה לכל התכונות, מתחדש מדי חודש.</p>
+      <span class="tag" data-he="מנוי" data-en="Subscription">מנוי</span>
+    </div>
+    <div class="plan featured">
+      <span class="ribbon" data-he="הכי משתלם" data-en="Best value">הכי משתלם</span>
+      <span class="emoji">⭐</span>
+      <h3 data-he="מנוי שנתי" data-en="Yearly">מנוי שנתי</h3>
+      <p data-he="המסלול המשתלם ביותר — עם תקופת ניסיון חינם להתחלה." data-en="The best-value plan — with a free trial to get started.">המסלול המשתלם ביותר — עם תקופת ניסיון חינם להתחלה.</p>
+      <span class="tag" data-he="ניסיון חינם" data-en="Free trial">ניסיון חינם</span>
+    </div>
+    <div class="plan">
+      <span class="emoji">♾️</span>
+      <h3>Lifetime</h3>
+      <p data-he="תשלום אחד, פרימיום לתמיד — בלי חידושים." data-en="Pay once, premium forever — no renewals.">תשלום אחד, פרימיום לתמיד — בלי חידושים.</p>
+      <span class="tag" data-he="חד-פעמי" data-en="One-time">חד-פעמי</span>
+    </div>
+  </div>
+
+  <!-- FOOT CTA -->
+  <div class="foot-cta">
+    <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-he="צפו בתוכניות ב-App Store" data-en="See plans on the App Store">צפו בתוכניות ב-App Store</span>
+    </a>
+    <p class="note" data-he="סריקת ה-AI היא התכונה היחידה עם עלות אמיתית, ולכן רק היא נמדדת — שאר הליבה תמיד זמינה. המחירים מוצגים ב-App Store בלבד. ניתן לשתף דרך Apple Family Sharing ולשחזר רכישות בכל עת." data-en="AI scanning is the only feature with a real cost, so it's the only thing metered — the rest of the core stays available. Prices are shown on the App Store only. Shareable via Apple Family Sharing, and you can restore purchases anytime.">סריקת ה-AI היא התכונה היחידה עם עלות אמיתית, ולכן רק היא נמדדת — שאר הליבה תמיד זמינה. המחירים מוצגים ב-App Store בלבד. ניתן לשתף דרך Apple Family Sharing ולשחזר רכישות בכל עת.</p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-links">
+    <a href="/" data-he="בית" data-en="Home">בית</a>
+    <a href="/subscriptions" data-he="מנויים" data-en="Plans">מנויים</a>
+    <a href="/faq" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
+    <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy">מדיניות פרטיות</a>
+    <a href="/terms" data-he="תנאי שימוש" data-en="Terms">תנאי שימוש</a>
+    <a href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
+    <a href="https://www.erezults.com">E-REZULTS</a>
+  </div>
+  <div class="footer-copy">&copy; 2022–2026 E-REZULTS · Erez Cohen</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    const isHe = lang === 'he';
+    document.documentElement.lang = isHe ? 'he' : 'en';
+    document.documentElement.dir = isHe ? 'rtl' : 'ltr';
+    document.title = isHe ? 'מנויים — Xpensy Premium' : 'Plans — Xpensy Premium';
+    document.querySelectorAll('[data-he][data-en]').forEach(el => el.innerHTML = el.getAttribute('data-' + lang));
+    document.querySelectorAll('.header-lang button').forEach(btn => btn.classList.toggle('active', (isHe && btn.textContent === 'עברית') || (!isHe && btn.textContent === 'English')));
+    localStorage.setItem('xpensy-lang', lang);
+  }
+  const saved = localStorage.getItem('xpensy-lang');
+  if (saved) setLang(saved);
+</script>
+</body>
+</html>

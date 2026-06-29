@@ -16,6 +16,9 @@
     .header p { opacity: 0.5; margin-top: 8px; font-size: 14px; }
     .header .home-link { display: inline-block; margin-bottom: 16px; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; }
     .header .home-link:hover { color: #a78bfa; }
+    .page-nav { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+    .page-nav a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; font-weight: 600; }
+    .page-nav a:hover { color: #a78bfa; }
     .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
     .contact-card { background: linear-gradient(135deg, #3b2870, #6c5ce7); border-radius: 16px; padding: 32px; color: #fff; margin-bottom: 40px; text-align: center; }
     .contact-card h2 { font-family: 'Rubik', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
@@ -33,7 +36,11 @@
 </head>
 <body>
   <div class="header">
-    <a href="/" class="home-link">&larr; Xpensy</a>
+    <nav class="page-nav">
+      <a href="/">&larr; Home</a>
+      <a href="/subscriptions">Plans</a>
+      <a href="/faq">FAQ</a>
+    </nav>
     <h1>Support</h1>
     <p>We're here to help</p>
   </div>

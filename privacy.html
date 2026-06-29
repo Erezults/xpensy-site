@@ -16,6 +16,9 @@
     .header p { opacity: 0.5; margin-top: 8px; font-size: 14px; }
     .header .home-link { display: inline-block; margin-bottom: 16px; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; }
     .header .home-link:hover { color: #a78bfa; }
+    .page-nav { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+    .page-nav a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; font-weight: 600; }
+    .page-nav a:hover { color: #a78bfa; }
     .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
     h2 { font-family: 'Rubik', sans-serif; font-size: 20px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; color: #3b3086; }
     h3 { font-size: 16px; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
@@ -28,7 +31,11 @@
 </head>
 <body>
   <div class="header">
-    <a href="/" class="home-link">&larr; Xpensy</a>
+    <nav class="page-nav">
+      <a href="/">&larr; Home</a>
+      <a href="/subscriptions">Plans</a>
+      <a href="/faq">FAQ</a>
+    </nav>
     <h1>Privacy Policy</h1>
     <p>Last updated: June 29, 2026</p>
   </div>
