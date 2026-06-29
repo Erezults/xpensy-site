@@ -12,6 +12,10 @@
   <meta property="og:description" content="Track group trip expenses, scan receipts with AI, split costs automatically.">
   <meta property="og:image" content="https://xpensy.erezults.com/images/og-image.png">
   <meta property="og:url" content="https://xpensy.erezults.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Xpensy — Smart Trip Expense Tracker">
+  <meta name="twitter:description" content="Track group trip expenses, scan receipts with AI, split costs automatically.">
+  <meta name="twitter:image" content="https://xpensy.erezults.com/images/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -329,6 +333,44 @@
       html[dir="ltr"] .feature-block,
       html[dir="ltr"] .feature-block.flip { flex-direction: column; }
     }
+
+    /* ═══ SHOWCASE (App Store screenshots) ═══ */
+    .showcase { padding: 120px 0 100px; position: relative; overflow: hidden; }
+    .showcase .section-label, .showcase .section-title, .showcase .section-subtitle { padding-left: 24px; padding-right: 24px; }
+    .shots-scroller {
+      display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 24px max(24px, calc((100% - 1120px) / 2)) 40px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .shots-scroller::-webkit-scrollbar { display: none; }
+    .shot {
+      flex: 0 0 auto; width: 270px; border-radius: 30px; scroll-snap-align: center; display: block;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    }
+    .shot:hover { transform: translateY(-10px); }
+
+    /* ═══ PREMIUM ═══ */
+    .premium { padding: 140px 24px; position: relative; overflow: hidden; }
+    .premium-bg { position: absolute; inset: 0; background:
+      radial-gradient(ellipse 50% 45% at 50% 0%, rgba(139,92,246,0.12), transparent),
+      radial-gradient(ellipse 40% 40% at 80% 90%, rgba(34,211,238,0.05), transparent); }
+    .premium-free {
+      max-width: 760px; margin: 0 auto 48px; text-align: center;
+      background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px 28px;
+    }
+    .premium-free strong { color: var(--text); font-weight: 700; font-family: var(--font-display); display: block; margin-bottom: 6px; font-size: 15px; }
+    .premium-free span { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+    .premium-perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 860px; margin: 0 auto 56px; }
+    .premium-perk {
+      display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 40px;
+      background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.18); color: var(--purple-bright);
+      font-size: 14px; font-weight: 600; font-family: var(--font-display);
+    }
+    .premium-foot { text-align: center; margin-top: 8px; }
+    .premium-foot .btn-primary { font-size: 16px; }
+    .premium-note { color: var(--text-muted); font-size: 13px; margin-top: 18px; line-height: 1.8; max-width: 620px; margin-left: auto; margin-right: auto; }
+    @media (max-width: 480px) { .shot { width: 230px; } .premium { padding: 100px 20px; } }
   </style>
 </head>
 <body>
@@ -472,6 +514,21 @@
   </div>
 </section>
 
+<!-- ═══════════════ SHOWCASE (App Store screenshots) ═══════════════ -->
+<section class="showcase">
+  <div class="sr"><div class="section-label" data-he="במבט מהאפליקציה" data-en="Inside the App">במבט מהאפליקציה</div></div>
+  <div class="section-title sr sr-d1" data-he="ככה זה נראה" data-en="See It in Action">ככה זה נראה</div>
+  <div class="section-subtitle sr sr-d2" data-he="הצצה למסכים האמיתיים של Xpensy — בעברית ובאנגלית" data-en="A look at Xpensy's real screens">הצצה למסכים האמיתיים של Xpensy — בעברית ובאנגלית</div>
+  <div class="shots-scroller">
+    <img class="shot" src="images/store/iphone/he/01-home.jpg" data-img-he="images/store/iphone/he/01-home.jpg" data-img-en="images/store/iphone/en/01-home.jpg" alt="Home" loading="lazy">
+    <img class="shot" src="images/store/iphone/he/02-ai.jpg" data-img-he="images/store/iphone/he/02-ai.jpg" data-img-en="images/store/iphone/en/02-ai.jpg" alt="AI receipt scanning" loading="lazy">
+    <img class="shot" src="images/store/iphone/he/03-expenses.jpg" data-img-he="images/store/iphone/he/03-expenses.jpg" data-img-en="images/store/iphone/en/03-expenses.jpg" alt="Expenses" loading="lazy">
+    <img class="shot" src="images/store/iphone/he/04-settlement.jpg" data-img-he="images/store/iphone/he/04-settlement.jpg" data-img-en="images/store/iphone/en/04-settlement.jpg" alt="Settlement" loading="lazy">
+    <img class="shot" src="images/store/iphone/he/05-map.jpg" data-img-he="images/store/iphone/he/05-map.jpg" data-img-en="images/store/iphone/en/05-map.jpg" alt="Trip map" loading="lazy">
+    <img class="shot" src="images/store/iphone/he/06-stats.jpg" data-img-he="images/store/iphone/he/06-stats.jpg" data-img-en="images/store/iphone/en/06-stats.jpg" alt="Statistics" loading="lazy">
+  </div>
+</section>
+
 <!-- ═══════════════ HOW IT WORKS ═══════════════ -->
 <section class="how-section">
   <div class="sr"><div class="section-label" data-he="איך זה עובד" data-en="How It Works">איך זה עובד</div></div>
@@ -503,7 +560,7 @@
 <section class="stats-section">
   <div class="stats-row">
     <div class="sr">
-      <div class="stat-val" data-count="30">0</div>
+      <div class="stat-val" data-count="90">0</div>
       <div class="stat-desc" data-he="מטבעות נתמכים" data-en="Supported currencies">מטבעות נתמכים</div>
     </div>
     <div class="sr sr-d1">
@@ -558,6 +615,68 @@
   </div>
 </section>
 
+<!-- ═══════════════ PREMIUM ═══════════════ -->
+<section class="premium" id="premium">
+  <div class="premium-bg"></div>
+  <div class="sr"><div class="section-label" data-he="שדרוג" data-en="Upgrade">שדרוג</div></div>
+  <div class="section-title sr sr-d1">Xpensy Premium</div>
+  <div class="section-subtitle sr sr-d2" data-he="כל היסודות בחינם. משדרגים כשרוצים יותר — ובלי לאבד אף פעם שום נתון." data-en="All the essentials are free. Upgrade when you want more — and never lose any of your data.">כל היסודות בחינם. משדרגים כשרוצים יותר — ובלי לאבד אף פעם שום נתון.</div>
+
+  <div class="premium-free sr">
+    <strong data-he="חינם, תמיד" data-en="Free, always">חינם, תמיד</strong>
+    <span data-he="עד 2 טיולים, חברים ללא הגבלה, הוצאות ידניות, חלוקה וסיכום חשבון, תמיכה ב-90+ מטבעות, עבודה אופליין, ומכסת סריקות קבלה ב-AI מדי חודש." data-en="Up to 2 trips, unlimited members, manual expenses, splitting &amp; settlement, 90+ currencies, offline mode, and a monthly allowance of free AI receipt scans.">עד 2 טיולים, חברים ללא הגבלה, הוצאות ידניות, חלוקה וסיכום חשבון, תמיכה ב-90+ מטבעות, עבודה אופליין, ומכסת סריקות קבלה ב-AI מדי חודש.</span>
+  </div>
+
+  <div class="sr"><div class="section-label" data-he="מה Premium פותח" data-en="What Premium Unlocks">מה Premium פותח</div></div>
+  <div class="premium-perks sr sr-d1">
+    <span class="premium-perk" data-he="✦ טיולים ללא הגבלה" data-en="✦ Unlimited trips">✦ טיולים ללא הגבלה</span>
+    <span class="premium-perk" data-he="✦ סריקת קבלות ב-AI ללא הגבלה" data-en="✦ Unlimited AI receipt scanning">✦ סריקת קבלות ב-AI ללא הגבלה</span>
+    <span class="premium-perk" data-he="✦ ייצוא לרואה חשבון (PDF)" data-en="✦ Accountant-ready export (PDF)">✦ ייצוא לרואה חשבון (PDF)</span>
+    <span class="premium-perk" data-he="✦ גרפים וניתוחים מתקדמים" data-en="✦ Advanced charts &amp; analytics">✦ גרפים וניתוחים מתקדמים</span>
+  </div>
+
+  <div class="usecases-grid">
+    <div class="usecase-card sr">
+      <span class="usecase-emoji">🎟️</span>
+      <h4 data-he="פתיחת טיול" data-en="Per-Trip Unlock">פתיחת טיול</h4>
+      <p data-he="תשלום חד-פעמי שפותח טיול אחד — לכל חברי הקבוצה שבו." data-en="A one-time purchase that unlocks a single trip — for everyone in it.">תשלום חד-פעמי שפותח טיול אחד — לכל חברי הקבוצה שבו.</p>
+      <div class="usecase-meta"><span class="usecase-chip" data-he="חד-פעמי" data-en="One-time">חד-פעמי</span></div>
+    </div>
+    <div class="usecase-card sr sr-d1">
+      <span class="usecase-emoji">👥</span>
+      <h4 data-he="פתיחה קבוצתית" data-en="Group Unlock">פתיחה קבוצתית</h4>
+      <p data-he="אדם אחד פותח את הטיול כולו — וכל הקבוצה נהנית מהתכונות." data-en="One person unlocks the whole trip — and the entire group gets the features.">אדם אחד פותח את הטיול כולו — וכל הקבוצה נהנית מהתכונות.</p>
+      <div class="usecase-meta"><span class="usecase-chip" data-he="חד-פעמי" data-en="One-time">חד-פעמי</span></div>
+    </div>
+    <div class="usecase-card sr sr-d2">
+      <span class="usecase-emoji">🗓️</span>
+      <h4 data-he="מנוי חודשי" data-en="Monthly">מנוי חודשי</h4>
+      <p data-he="גישה מלאה לכל התכונות, מתחדש מדי חודש." data-en="Full access to everything, renews monthly.">גישה מלאה לכל התכונות, מתחדש מדי חודש.</p>
+      <div class="usecase-meta"><span class="usecase-chip" data-he="מנוי" data-en="Subscription">מנוי</span></div>
+    </div>
+    <div class="usecase-card sr">
+      <span class="usecase-emoji">⭐</span>
+      <h4 data-he="מנוי שנתי" data-en="Yearly">מנוי שנתי</h4>
+      <p data-he="המשתלם ביותר — עם תקופת ניסיון חינם להתחלה." data-en="The best value — with a free trial to get started.">המשתלם ביותר — עם תקופת ניסיון חינם להתחלה.</p>
+      <div class="usecase-meta"><span class="usecase-chip" data-he="ניסיון חינם" data-en="Free trial">ניסיון חינם</span></div>
+    </div>
+    <div class="usecase-card sr sr-d1">
+      <span class="usecase-emoji">♾️</span>
+      <h4>Lifetime</h4>
+      <p data-he="תשלום אחד, פרימיום לתמיד." data-en="Pay once, premium forever.">תשלום אחד, פרימיום לתמיד.</p>
+      <div class="usecase-meta"><span class="usecase-chip" data-he="חד-פעמי" data-en="One-time">חד-פעמי</span></div>
+    </div>
+  </div>
+
+  <div class="premium-foot sr sr-d2">
+    <a href="https://apps.apple.com/app/xpensy-trip-tracker/id6761180051" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-he="צפו בתוכניות ב-App Store" data-en="See plans on the App Store">צפו בתוכניות ב-App Store</span>
+    </a>
+    <p class="premium-note" data-he="סריקת ה-AI היא התכונה היחידה עם עלות אמיתית, ולכן רק היא נמדדת — שאר הליבה תמיד זמינה. המחירים מוצגים ב-App Store. ניתן לשתף דרך Apple Family Sharing ולשחזר רכישות בכל עת." data-en="AI scanning is the only feature with a real cost, so it's the only thing metered — the rest of the core stays available. Prices are shown on the App Store. Shareable via Apple Family Sharing, and you can restore purchases anytime.">סריקת ה-AI היא התכונה היחידה עם עלות אמיתית, ולכן רק היא נמדדת — שאר הליבה תמיד זמינה. המחירים מוצגים ב-App Store. ניתן לשתף דרך Apple Family Sharing ולשחזר רכישות בכל עת.</p>
+  </div>
+</section>
+
 <!-- ═══════════════ FINAL CTA ═══════════════ -->
 <section class="final-cta">
   <div class="final-cta-bg"></div>
@@ -575,9 +694,10 @@
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="footer-links">
+    <a href="/faq" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
     <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
     <a href="/terms" data-he="תנאי שימוש" data-en="Terms of Service">תנאי שימוש</a>
-    <a href="mailto:erezults@gmail.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
+    <a href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
     <a href="https://www.erezults.com">E-REZULTS</a>
   </div>
   <div class="footer-copy">&copy; 2022–2026 E-REZULTS · Erez Cohen</div>
@@ -590,6 +710,7 @@
     document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
     document.title = lang === 'he' ? 'Xpensy — ניהול הוצאות חכם לטיולים' : 'Xpensy — Smart Trip Expense Tracker';
     document.querySelectorAll('[data-he][data-en]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
+    document.querySelectorAll('[data-img-he][data-img-en]').forEach(el => el.setAttribute('src', el.getAttribute('data-img-' + lang)));
     document.querySelectorAll('.lang-toggle button').forEach(btn =>
       btn.classList.toggle('active', (lang === 'he' && btn.textContent === 'עברית') || (lang === 'en' && btn.textContent === 'English'))
     );

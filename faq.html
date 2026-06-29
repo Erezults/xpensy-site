@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>שאלות נפוצות — Xpensy</title>
+  <meta name="description" content="Xpensy FAQ — answers about trips, AI receipt scanning, Xpensy Premium, expense splitting, offline mode, privacy, and your account.">
+  <link rel="icon" type="image/png" href="images/app-icon.png">
+  <link rel="apple-touch-icon" href="images/app-icon.png">
+  <meta property="og:title" content="Xpensy — FAQ">
+  <meta property="og:description" content="Answers about trips, AI receipt scanning, Xpensy Premium, splitting, offline mode, and privacy.">
+  <meta property="og:image" content="https://xpensy.erezults.com/images/og-image.png">
+  <meta property="og:url" content="https://xpensy.erezults.com/faq">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #08060e;
+      --bg-dark: #0d0a17;
+      --bg-card: #13101f;
+      --bg-glass: rgba(255,255,255,0.04);
+      --border-glass: rgba(255,255,255,0.08);
+      --purple: #8b5cf6;
+      --purple-bright: #a78bfa;
+      --purple-glow: rgba(139,92,246,0.25);
+      --cyan: #22d3ee;
+      --emerald: #34d399;
+      --text: #f1f0f5;
+      --text-secondary: rgba(241,240,245,0.55);
+      --text-muted: rgba(241,240,245,0.3);
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg-deep); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+    /* ═══ LANGUAGE TOGGLE ═══ */
+    .lang-toggle {
+      position: fixed; top: 24px; left: 24px; z-index: 100;
+      background: rgba(13,10,23,0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-glass); border-radius: 40px;
+      padding: 4px; display: flex; gap: 2px;
+    }
+    .lang-toggle button {
+      border: none; background: transparent; padding: 10px 20px; border-radius: 36px;
+      font-family: var(--font-display); font-weight: 600; font-size: 13px; cursor: pointer;
+      color: var(--text-muted); transition: all 0.4s cubic-bezier(.4,0,.2,1); letter-spacing: 0.02em;
+    }
+    .lang-toggle button.active { background: var(--purple); color: var(--text); box-shadow: 0 0 24px var(--purple-glow); }
+    .lang-toggle button:hover:not(.active) { color: var(--text-secondary); }
+
+    /* ═══ HEADER ═══ */
+    .faq-header { position: relative; overflow: hidden; padding: 120px 24px 60px; text-align: center; }
+    .faq-header-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,92,246,0.16), transparent),
+        radial-gradient(ellipse 40% 30% at 70% 60%, rgba(34,211,238,0.05), transparent);
+    }
+    .home-link {
+      position: relative; display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 600;
+      font-family: var(--font-display); margin-bottom: 28px; transition: color 0.3s;
+    }
+    .home-link:hover { color: var(--purple-bright); }
+    .faq-header .eyebrow {
+      position: relative; font-family: var(--font-display); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 4px; color: var(--purple-bright); margin-bottom: 16px;
+    }
+    .faq-header h1 {
+      position: relative; font-family: var(--font-display); font-size: clamp(38px, 6vw, 64px);
+      font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 16px;
+    }
+    .faq-header h1 .gradient { background: linear-gradient(135deg, var(--purple-bright), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .faq-header p { position: relative; color: var(--text-secondary); font-size: 17px; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* ═══ CONTENT ═══ */
+    .content { max-width: 760px; margin: 0 auto; padding: 20px 24px 100px; position: relative; }
+    .cat-title {
+      font-family: var(--font-display); font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px; color: var(--purple-bright);
+      margin: 48px 0 16px; padding-inline-start: 4px;
+    }
+    .cat-title:first-of-type { margin-top: 20px; }
+
+    details.faq {
+      background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 16px;
+      margin-bottom: 12px; overflow: hidden; transition: border-color 0.3s, background 0.3s;
+    }
+    details.faq[open] { border-color: rgba(139,92,246,0.3); background: var(--bg-glass); }
+    details.faq summary {
+      list-style: none; cursor: pointer; padding: 20px 24px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px; font-family: var(--font-display);
+      font-weight: 600; font-size: 16px; color: var(--text);
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary .chev {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--purple-bright); transition: transform 0.35s cubic-bezier(.4,0,.2,1); font-size: 18px;
+    }
+    details.faq[open] summary .chev { transform: rotate(180deg); }
+    details.faq .answer { padding: 0 24px 22px; color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    details.faq .answer a { color: var(--purple-bright); text-decoration: none; }
+    details.faq .answer a:hover { text-decoration: underline; }
+    details.faq .answer strong { color: var(--text); font-weight: 600; }
+
+    /* ═══ CONTACT CARD ═══ */
+    .contact-card {
+      margin-top: 56px; text-align: center; background: var(--bg-card);
+      border: 1px solid var(--border-glass); border-radius: 24px; padding: 44px 32px;
+      position: relative; overflow: hidden;
+    }
+    .contact-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(139,92,246,0.12), transparent);
+    }
+    .contact-card h2 { position: relative; font-family: var(--font-display); font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+    .contact-card p { position: relative; color: var(--text-secondary); font-size: 15px; margin-bottom: 24px; }
+    .contact-card a.btn {
+      position: relative; display: inline-block; background: var(--text); color: var(--bg-deep);
+      font-family: var(--font-display); font-weight: 700; font-size: 15px;
+      padding: 14px 30px; border-radius: 50px; text-decoration: none; transition: all 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .contact-card a.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,0.15); }
+
+    /* ═══ FOOTER ═══ */
+    footer { padding: 48px 24px; border-top: 1px solid var(--border-glass); text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--purple-bright); }
+    .footer-copy { color: rgba(255,255,255,0.15); font-size: 12px; }
+
+    @media (max-width: 480px) {
+      .faq-header { padding: 100px 20px 48px; }
+      details.faq summary { font-size: 15px; padding: 18px 20px; }
+      .footer-links { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ LANGUAGE TOGGLE ═══ -->
+<div class="lang-toggle">
+  <button class="active" onclick="setLang('he')">עברית</button>
+  <button onclick="setLang('en')">English</button>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header class="faq-header">
+  <div class="faq-header-bg"></div>
+  <a href="/" class="home-link"><span data-he="חזרה ל-Xpensy" data-en="Back to Xpensy">חזרה ל-Xpensy</span></a>
+  <div class="eyebrow" data-he="מרכז העזרה" data-en="Help Center">מרכז העזרה</div>
+  <h1><span data-he="שאלות" data-en="Frequently Asked">שאלות</span> <span class="gradient" data-he="נפוצות" data-en="Questions">נפוצות</span></h1>
+  <p data-he="כל מה שצריך לדעת על Xpensy — מטיולים וסריקת קבלות ועד מנויים, פרטיות וניהול החשבון." data-en="Everything you need to know about Xpensy — from trips and receipt scanning to subscriptions, privacy, and managing your account.">כל מה שצריך לדעת על Xpensy — מטיולים וסריקת קבלות ועד מנויים, פרטיות וניהול החשבון.</p>
+</header>
+
+<div class="content">
+
+  <!-- ═══ GETTING STARTED ═══ -->
+  <div class="cat-title" data-he="התחלה מהירה" data-en="Getting Started">התחלה מהירה</div>
+
+  <details class="faq" open>
+    <summary><span data-he="מה זה Xpensy?" data-en="What is Xpensy?">מה זה Xpensy?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="Xpensy היא אפליקציה לניהול וחלוקת הוצאות בטיולים קבוצתיים. עוקבים אחרי כל הוצאה, סורקים קבלות עם AI, ממירים מטבעות אוטומטית, ובסוף רואים בדיוק מי חייב למי. עובדת ב-iPhone וב-Mac." data-en="Xpensy is an app for tracking and splitting group trip expenses. Log every expense, scan receipts with AI, convert currencies automatically, and see exactly who owes whom at the end. It works on iPhone and Mac.">Xpensy היא אפליקציה לניהול וחלוקת הוצאות בטיולים קבוצתיים. עוקבים אחרי כל הוצאה, סורקים קבלות עם AI, ממירים מטבעות אוטומטית, ובסוף רואים בדיוק מי חייב למי. עובדת ב-iPhone וב-Mac.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="איך יוצרים טיול?" data-en="How do I create a trip?">איך יוצרים טיול?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="במסך הבית מקישים על כפתור ה-+ ובוחרים &laquo;טיול חדש&raquo;. נותנים שם, יעד, תאריכים ומטבע בסיס — ואפשר להזמין חברים מיד עם קוד הצטרפות או QR." data-en="On the home screen, tap the + button and choose &laquo;New Trip&raquo;. Set a name, destination, dates, and base currency — then invite friends right away with a join code or QR.">במסך הבית מקישים על כפתור ה-+ ובוחרים &laquo;טיול חדש&raquo;. נותנים שם, יעד, תאריכים ומטבע בסיס — ואפשר להזמין חברים מיד עם קוד הצטרפות או QR.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="איך מוסיפים הוצאה?" data-en="How do I add an expense?">איך מוסיפים הוצאה?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="בתוך טיול מקישים על + כדי להוסיף הוצאה ידנית, או משתמשים בסורק הקבלות החכם כדי שה-AI ימלא את הסכום, התאריך, הקטגוריה ושם בית העסק אוטומטית מתוך צילום של הקבלה." data-en="Inside a trip, tap + to add an expense manually, or use the smart receipt scanner to let AI fill in the amount, date, category, and merchant automatically from a photo of your receipt.">בתוך טיול מקישים על + כדי להוסיף הוצאה ידנית, או משתמשים בסורק הקבלות החכם כדי שה-AI ימלא את הסכום, התאריך, הקטגוריה ושם בית העסק אוטומטית מתוך צילום של הקבלה.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="איך מזמינים מישהו לטיול?" data-en="How do I invite someone to a trip?">איך מזמינים מישהו לטיול?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="פותחים את הטיול, עוברים ל&laquo;חברים&raquo; ומקישים על &laquo;הזמנה&raquo;. אפשר לשתף קוד הצטרפות, קוד QR או קישור. החבר מצטרף אחרי שהוא נכנס או יוצר חשבון Xpensy. אפשר להוסיף משתתפים ללא הגבלה — בחינם." data-en="Open the trip, go to &laquo;Members&raquo;, and tap &laquo;Invite&raquo;. Share a join code, QR code, or link. They join after signing in or creating an Xpensy account. You can add unlimited members — for free.">פותחים את הטיול, עוברים ל&laquo;חברים&raquo; ומקישים על &laquo;הזמנה&raquo;. אפשר לשתף קוד הצטרפות, קוד QR או קישור. החבר מצטרף אחרי שהוא נכנס או יוצר חשבון Xpensy. אפשר להוסיף משתתפים ללא הגבלה — בחינם.</div>
+  </details>
+
+  <!-- ═══ AI RECEIPT SCANNING ═══ -->
+  <div class="cat-title" data-he="סריקת קבלות עם AI" data-en="AI Receipt Scanning">סריקת קבלות עם AI</div>
+
+  <details class="faq">
+    <summary><span data-he="איך עובדת סריקת הקבלות?" data-en="How does AI receipt scanning work?">איך עובדת סריקת הקבלות?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="מצלמים קבלה או בוחרים תמונה מהגלריה, ו-Xpensy מזהה אוטומטית את הסכום, המטבע, התאריך, הקטגוריה ושם בית העסק. תמיד אפשר לבדוק ולערוך את הפרטים לפני השמירה. אפשר גם לשתף קבלה מאפליקציה אחרת ישירות ל-Xpensy." data-en="Take a photo of a receipt or pick one from your gallery, and Xpensy automatically detects the amount, currency, date, category, and merchant. You can always review and edit the details before saving. You can also share a receipt from another app straight into Xpensy.">מצלמים קבלה או בוחרים תמונה מהגלריה, ו-Xpensy מזהה אוטומטית את הסכום, המטבע, התאריך, הקטגוריה ושם בית העסק. תמיד אפשר לבדוק ולערוך את הפרטים לפני השמירה. אפשר גם לשתף קבלה מאפליקציה אחרת ישירות ל-Xpensy.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="האם חובה להשתמש ב-AI?" data-en="Do I have to use AI?">האם חובה להשתמש ב-AI?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="לא. סריקת ה-AI היא קיצור דרך נוח, אבל תמיד אפשר להזין הוצאות ידנית. לפני שתמונה כלשהי נשלחת לעיבוד מוצגת בקשת הסכמה, ואפשר לבטל את ההסכמה בכל רגע בהגדרות." data-en="No. AI scanning is a convenient shortcut, but you can always enter expenses manually. A consent prompt is shown before any image is sent for processing, and you can revoke that consent anytime in Settings.">לא. סריקת ה-AI היא קיצור דרך נוח, אבל תמיד אפשר להזין הוצאות ידנית. לפני שתמונה כלשהי נשלחת לעיבוד מוצגת בקשת הסכמה, ואפשר לבטל את ההסכמה בכל רגע בהגדרות.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="מה קורה לתמונות הקבלות שלי?" data-en="What happens to my receipt photos?">מה קורה לתמונות הקבלות שלי?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="התמונה נשלחת לעיבוד בזמן אמת לצורך זיהוי הפרטים בלבד, ואינה נשמרת אצל ספק ה-AI. הקבלות שלכם נשמרות מאובטחות בענן ומשויכות לטיול. פרטים מלאים ב<a href='/privacy.html'>מדיניות הפרטיות</a>." data-en="The image is processed in real time only to detect the details, and is not stored by the AI provider. Your receipts are kept securely in the cloud and attached to the trip. See the <a href='/privacy.html'>Privacy Policy</a> for full details.">התמונה נשלחת לעיבוד בזמן אמת לצורך זיהוי הפרטים בלבד, ואינה נשמרת אצל ספק ה-AI. הקבלות שלכם נשמרות מאובטחות בענן ומשויכות לטיול. פרטים מלאים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</div>
+  </details>
+
+  <!-- ═══ PREMIUM / SUBSCRIPTIONS ═══ -->
+  <div class="cat-title" data-he="Xpensy Premium ומנויים" data-en="Xpensy Premium &amp; Subscriptions">Xpensy Premium ומנויים</div>
+
+  <details class="faq">
+    <summary><span data-he="האם Xpensy בחינם?" data-en="Is Xpensy free?">האם Xpensy בחינם?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="כן — ההורדה והשימוש חינמיים. בחינם מקבלים הוצאות ידניות ללא הגבלה, חברי קבוצה ללא הגבלה, חלוקת הוצאות וסיכום חשבון, תמיכה רב-מטבעית, עבודה אופליין, עד 2 טיולים, ומכסת סריקות קבלה ב-AI מדי חודש. Xpensy Premium פותח שימוש מורחב — ראו את השאלה הבאה." data-en="Yes — it's free to download and use. The free tier includes unlimited manual expenses, unlimited group members, expense splitting and settlement, multi-currency support, offline mode, up to 2 trips, and a monthly allowance of free AI receipt scans. Xpensy Premium unlocks expanded use — see the next question.">כן — ההורדה והשימוש חינמיים. בחינם מקבלים הוצאות ידניות ללא הגבלה, חברי קבוצה ללא הגבלה, חלוקת הוצאות וסיכום חשבון, תמיכה רב-מטבעית, עבודה אופליין, עד 2 טיולים, ומכסת סריקות קבלה ב-AI מדי חודש. Xpensy Premium פותח שימוש מורחב — ראו את השאלה הבאה.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="מה כולל Xpensy Premium?" data-en="What does Xpensy Premium include?">מה כולל Xpensy Premium?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="Premium פותח טיולים ללא הגבלה, סריקת קבלות עם AI ללא הגבלה, ייצוא דוחות להנהלת חשבונות (PDF) וגרפים וניתוחים מתקדמים. ההזנה הידנית, חברי הקבוצה, החלוקה והסיכום נשארים תמיד חינמיים." data-en="Premium unlocks unlimited trips, unlimited AI receipt scanning, accountant-ready report export (PDF), and advanced charts and analytics. Manual entry, group members, splitting, and settlement always stay free.">Premium פותח טיולים ללא הגבלה, סריקת קבלות עם AI ללא הגבלה, ייצוא דוחות להנהלת חשבונות (PDF) וגרפים וניתוחים מתקדמים. ההזנה הידנית, חברי הקבוצה, החלוקה והסיכום נשארים תמיד חינמיים.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="אילו אפשרויות רכישה יש?" data-en="What are the purchase options?">אילו אפשרויות רכישה יש?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="אפשר לפתוח Premium בכמה דרכים: פתיחה לטיול בודד (תשלום חד-פעמי), פתיחה קבוצתית (אדם אחד פותח את ה-Premium לכל הטיול), מנוי חודשי, מנוי שנתי (עם תקופת ניסיון חינם) או רכישת Lifetime חד-פעמית. המחירים העדכניים מוצגים תמיד בתוך האפליקציה ב-App Store." data-en="You can unlock Premium in several ways: a single-trip unlock (one-time), a Group Unlock (one person unlocks Premium for the whole trip), a Monthly subscription, a Yearly subscription (with a free trial), or a one-time Lifetime purchase. Current prices are always shown inside the app on the App Store.">אפשר לפתוח Premium בכמה דרכים: פתיחה לטיול בודד (תשלום חד-פעמי), פתיחה קבוצתית (אדם אחד פותח את ה-Premium לכל הטיול), מנוי חודשי, מנוי שנתי (עם תקופת ניסיון חינם) או רכישת Lifetime חד-פעמית. המחירים העדכניים מוצגים תמיד בתוך האפליקציה ב-App Store.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="האם כל חברי הקבוצה צריכים לשלם?" data-en="Does everyone in the group need to pay?">האם כל חברי הקבוצה צריכים לשלם?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="לא. עם &laquo;פתיחה קבוצתית&raquo; מספיק שאדם אחד ירכוש, וכל חברי הטיול נהנים מתכונות ה-Premium באותו טיול. בנוסף, מנויים ו-Lifetime ניתנים לשיתוף דרך Apple Family Sharing." data-en="No. With a &laquo;Group Unlock&raquo;, just one person buys and every member of that trip gets the Premium features. In addition, subscriptions and Lifetime can be shared via Apple Family Sharing.">לא. עם &laquo;פתיחה קבוצתית&raquo; מספיק שאדם אחד ירכוש, וכל חברי הטיול נהנים מתכונות ה-Premium באותו טיול. בנוסף, מנויים ו-Lifetime ניתנים לשיתוף דרך Apple Family Sharing.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="איך מנהלים, משחזרים או מבטלים רכישה?" data-en="How do I manage, restore, or cancel a purchase?">איך מנהלים, משחזרים או מבטלים רכישה?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="כל הרכישות מתבצעות דרך ה-App Store של Apple. כדי לשחזר רכישה במכשיר חדש — הגדרות &larr; שחזור רכישות. ניהול או ביטול מנוי נעשים דרך הגדרות ה-Apple ID שלכם. מנוי מתחדש אוטומטית אלא אם מבטלים אותו לפחות 24 שעות לפני סוף התקופה." data-en="All purchases go through Apple's App Store. To restore a purchase on a new device — Settings &larr; Restore Purchases. Managing or cancelling a subscription is done in your Apple ID settings. A subscription auto-renews unless cancelled at least 24 hours before the period ends.">כל הרכישות מתבצעות דרך ה-App Store של Apple. כדי לשחזר רכישה במכשיר חדש — הגדרות &larr; שחזור רכישות. ניהול או ביטול מנוי נעשים דרך הגדרות ה-Apple ID שלכם. מנוי מתחדש אוטומטית אלא אם מבטלים אותו לפחות 24 שעות לפני סוף התקופה.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="מה קורה לנתונים שלי אם אפסיק את המנוי?" data-en="What happens to my data if my subscription ends?">מה קורה לנתונים שלי אם אפסיק את המנוי?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="הנתונים שלכם תמיד בטוחים. ביטול או סיום מנוי לעולם לא מוחק טיולים, הוצאות או חברים — רק תכונות Premium חדשות (כמו סריקות AI נוספות או טיולים חדשים מעבר למכסה החינמית) ננעלות עד לחידוש." data-en="Your data is always safe. Cancelling or ending a subscription never deletes trips, expenses, or members — only new Premium actions (like additional AI scans or new trips beyond the free allowance) are locked until you renew.">הנתונים שלכם תמיד בטוחים. ביטול או סיום מנוי לעולם לא מוחק טיולים, הוצאות או חברים — רק תכונות Premium חדשות (כמו סריקות AI נוספות או טיולים חדשים מעבר למכסה החינמית) ננעלות עד לחידוש.</div>
+  </details>
+
+  <!-- ═══ SPLITTING & CURRENCIES ═══ -->
+  <div class="cat-title" data-he="חלוקה ומטבעות" data-en="Splitting &amp; Currencies">חלוקה ומטבעות</div>
+
+  <details class="faq">
+    <summary><span data-he="איך עובדת חלוקת ההוצאות?" data-en="How does expense splitting work?">איך עובדת חלוקת ההוצאות?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="Xpensy עוקבת אחרי מי שילם על כל הוצאה ומחשבת את המאזנים אוטומטית. במסך הסיכום של הטיול רואים בדיוק מי חייב למי, ואפשר לסמן חובות כ&laquo;שולמו&raquo;. אפשר לחלק שווה בשווה או בסכומים מותאמים אישית." data-en="Xpensy tracks who paid for each expense and calculates balances automatically. On the trip's settlement screen you see exactly who owes whom, and you can mark debts as settled. You can split evenly or with custom amounts.">Xpensy עוקבת אחרי מי שילם על כל הוצאה ומחשבת את המאזנים אוטומטית. במסך הסיכום של הטיול רואים בדיוק מי חייב למי, ואפשר לסמן חובות כ&laquo;שולמו&raquo;. אפשר לחלק שווה בשווה או בסכומים מותאמים אישית.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="האם אפשר לערבב מטבעות באותו טיול?" data-en="Can I mix currencies in one trip?">האם אפשר לערבב מטבעות באותו טיול?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="בהחלט. אפשר להזין הוצאות בכל אחד ממאות המטבעות הנתמכים, ו-Xpensy ממירה אותן אוטומטית למטבע הבסיס של הטיול לפי שערי חליפין עדכניים — כך הסיכום תמיד ברור." data-en="Absolutely. You can enter expenses in any of the supported currencies, and Xpensy automatically converts them to the trip's base currency using live exchange rates — so the summary is always clear.">בהחלט. אפשר להזין הוצאות בכל אחד ממאות המטבעות הנתמכים, ו-Xpensy ממירה אותן אוטומטית למטבע הבסיס של הטיול לפי שערי חליפין עדכניים — כך הסיכום תמיד ברור.</div>
+  </details>
+
+  <!-- ═══ OFFLINE & SYNC ═══ -->
+  <div class="cat-title" data-he="אופליין וסנכרון" data-en="Offline &amp; Sync">אופליין וסנכרון</div>
+
+  <details class="faq">
+    <summary><span data-he="האם אפשר להשתמש באפליקציה בלי אינטרנט?" data-en="Can I use the app offline?">האם אפשר להשתמש באפליקציה בלי אינטרנט?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="כן. Xpensy בנויה אופליין-תחילה — אפשר להוסיף ולערוך הוצאות גם בלי חיבור לרשת. כשחוזרים לאינטרנט הכל מסתנכרן אוטומטית, ושום הוצאה לא הולכת לאיבוד." data-en="Yes. Xpensy is offline-first — you can add and edit expenses with no connection. When you reconnect, everything syncs automatically, and no expense is ever lost.">כן. Xpensy בנויה אופליין-תחילה — אפשר להוסיף ולערוך הוצאות גם בלי חיבור לרשת. כשחוזרים לאינטרנט הכל מסתנכרן אוטומטית, ושום הוצאה לא הולכת לאיבוד.</div>
+  </details>
+
+  <!-- ═══ PRIVACY & ACCOUNT ═══ -->
+  <div class="cat-title" data-he="פרטיות וחשבון" data-en="Privacy &amp; Account">פרטיות וחשבון</div>
+
+  <details class="faq">
+    <summary><span data-he="האם הנתונים שלי מאובטחים?" data-en="Is my data secure?">האם הנתונים שלי מאובטחים?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="כן. כל הנתונים מוצפנים במעבר (HTTPS) ובמנוחה. אנחנו משתמשים ב-Supabase עם Row Level Security, כך שרק אתם וחברי הטיול שלכם יכולים לגשת לנתוני הטיול. אפשר גם לנעול את האפליקציה עם Face ID או Touch ID. פרטים מלאים ב<a href='/privacy.html'>מדיניות הפרטיות</a>." data-en="Yes. All data is encrypted in transit (HTTPS) and at rest. We use Supabase with Row Level Security, so only you and your trip members can access your trip data. You can also lock the app with Face ID or Touch ID. See the <a href='/privacy.html'>Privacy Policy</a> for full details.">כן. כל הנתונים מוצפנים במעבר (HTTPS) ובמנוחה. אנחנו משתמשים ב-Supabase עם Row Level Security, כך שרק אתם וחברי הטיול שלכם יכולים לגשת לנתוני הטיול. אפשר גם לנעול את האפליקציה עם Face ID או Touch ID. פרטים מלאים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="איך מוחקים את החשבון?" data-en="How do I delete my account?">איך מוחקים את החשבון?</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="הגדרות &larr; מחיקת חשבון. הפעולה מוחקת לצמיתות את כל הנתונים שלכם, כולל טיולים והוצאות, ואינה ניתנת לביטול. אפשר גם לבקש מחיקה במייל אל <a href='mailto:xpensy.support@erezults.com'>xpensy.support@erezults.com</a>." data-en="Settings &larr; Delete Account. This permanently removes all your data, including trips and expenses, and cannot be undone. You can also request deletion by emailing <a href='mailto:xpensy.support@erezults.com'>xpensy.support@erezults.com</a>.">הגדרות &larr; מחיקת חשבון. הפעולה מוחקת לצמיתות את כל הנתונים שלכם, כולל טיולים והוצאות, ואינה ניתנת לביטול. אפשר גם לבקש מחיקה במייל אל <a href="mailto:xpensy.support@erezults.com">xpensy.support@erezults.com</a>.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="שכחתי את הסיסמה" data-en="I forgot my password">שכחתי את הסיסמה</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="הדרך הכי מהירה היא להיכנס עם Apple או Google במקום סיסמה. אם צריך עזרה עם כניסת מייל וסיסמה, שלחו לנו מייל אל <a href='mailto:xpensy.support@erezults.com'>xpensy.support@erezults.com</a> ונעזור לכם לחזור לגישה." data-en="The quickest option is to sign in with Apple or Google instead of a password. If you need help with an email/password login, email us at <a href='mailto:xpensy.support@erezults.com'>xpensy.support@erezults.com</a> and we'll help you regain access.">הדרך הכי מהירה היא להיכנס עם Apple או Google במקום סיסמה. אם צריך עזרה עם כניסת מייל וסיסמה, שלחו לנו מייל אל <a href="mailto:xpensy.support@erezults.com">xpensy.support@erezults.com</a> ונעזור לכם לחזור לגישה.</div>
+  </details>
+
+  <details class="faq">
+    <summary><span data-he="האפליקציה לא נטענת / תקועה" data-en="The app won't load / is stuck">האפליקציה לא נטענת / תקועה</span><span class="chev">⌄</span></summary>
+    <div class="answer" data-he="סוגרים לגמרי את האפליקציה ופותחים מחדש. אם הבעיה נמשכת, בודקים את חיבור האינטרנט. אם זה עדיין קורה — נשמח לעזור במייל xpensy.support@erezults.com עם תיאור קצר של מה שקרה." data-en="Force-quit the app and reopen it. If the problem continues, check your internet connection. If it still happens, we're happy to help at xpensy.support@erezults.com with a short description of what occurred.">סוגרים לגמרי את האפליקציה ופותחים מחדש. אם הבעיה נמשכת, בודקים את חיבור האינטרנט. אם זה עדיין קורה — נשמח לעזור במייל <a href="mailto:xpensy.support@erezults.com">xpensy.support@erezults.com</a> עם תיאור קצר של מה שקרה.</div>
+  </details>
+
+  <!-- ═══ CONTACT ═══ -->
+  <div class="contact-card">
+    <h2 data-he="לא מצאתם תשובה?" data-en="Didn't find an answer?">לא מצאתם תשובה?</h2>
+    <p data-he="נשמח לעזור. שלחו לנו מייל ונחזור אליכם תוך 1–2 ימי עסקים." data-en="We're happy to help. Send us an email and we'll get back to you within 1–2 business days.">נשמח לעזור. שלחו לנו מייל ונחזור אליכם תוך 1–2 ימי עסקים.</p>
+    <a class="btn" href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact Us">צרו קשר</a>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-links">
+    <a href="/" data-he="דף הבית" data-en="Home">דף הבית</a>
+    <a href="/privacy.html" data-he="מדיניות פרטיות" data-en="Privacy Policy">מדיניות פרטיות</a>
+    <a href="/terms.html" data-he="תנאי שימוש" data-en="Terms of Service">תנאי שימוש</a>
+    <a href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
+    <a href="https://www.erezults.com">E-REZULTS</a>
+  </div>
+  <div class="footer-copy">&copy; 2022–2026 E-REZULTS · Erez Cohen</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    const isHe = lang === 'he';
+    document.documentElement.lang = isHe ? 'he' : 'en';
+    document.documentElement.dir = isHe ? 'rtl' : 'ltr';
+    document.title = isHe ? 'שאלות נפוצות — Xpensy' : 'FAQ — Xpensy';
+    document.querySelectorAll('[data-he][data-en]').forEach(el => el.innerHTML = el.getAttribute('data-' + lang));
+    document.querySelectorAll('.lang-toggle button').forEach(btn =>
+      btn.classList.toggle('active', (isHe && btn.textContent === 'עברית') || (!isHe && btn.textContent === 'English'))
+    );
+    localStorage.setItem('xpensy-lang', lang);
+  }
+  const saved = localStorage.getItem('xpensy-lang');
+  if (saved) setLang(saved);
+</script>
+</body>
+</html>
