@@ -211,12 +211,15 @@
       if ((navigator.language || '').slice(0, 2).toLowerCase() !== 'he') { lang = 'en'; }
       applyLang();
 
-      var appLink = 'xpensy://';
-      document.getElementById('open-app-1').setAttribute('href', appLink);
-      document.getElementById('open-app-2').setAttribute('href', appLink);
-
       var hash = new URLSearchParams((location.hash || '').replace(/^#/, ''));
       var query = new URLSearchParams(location.search || '');
+
+      // Open the SAME app the request came from. Dev and prod register
+      // different URL schemes; the app passes ?app=dev so a dev signup/reset
+      // returns to the dev app instead of prod.
+      var appLink = query.get('app') === 'dev' ? 'xpensy-dev://' : 'xpensy://';
+      document.getElementById('open-app-1').setAttribute('href', appLink);
+      document.getElementById('open-app-2').setAttribute('href', appLink);
       var errorCode = hash.get('error_code') || hash.get('error') || query.get('error_code') || query.get('error');
       var errorDesc = hash.get('error_description') || query.get('error_description');
       var type = hash.get('type') || query.get('type');
