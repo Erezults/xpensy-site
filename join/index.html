@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Xpensy — הצטרפות לקבוצה</title>
+  <link rel="icon" href="/images/app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #08060e; --bg-dark: #0d0a17; --bg-card: #13101f;
+      --bg-glass: rgba(255,255,255,0.04); --border-glass: rgba(255,255,255,0.08);
+      --purple: #8b5cf6; --purple-bright: #a78bfa; --purple-glow: rgba(139,92,246,0.25);
+      --emerald: #34d399; --danger: #f87171;
+      --text: #f1f0f5; --text-secondary: rgba(241,240,245,0.55); --text-muted: rgba(241,240,245,0.3);
+      --font-display: 'Outfit', sans-serif; --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body); background: var(--bg-deep); color: var(--text);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 24px; -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,0.16), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 90%, rgba(139,92,246,0.10), transparent);
+      background-attachment: fixed;
+    }
+    .card {
+      width: 100%; max-width: 440px; background: var(--bg-card);
+      border: 1px solid var(--border-glass); border-radius: 24px;
+      padding: 40px 32px; text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+    .logo { width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 22px; display: block; box-shadow: 0 0 30px var(--purple-glow); }
+    .icon { font-size: 46px; line-height: 1; margin-bottom: 18px; }
+    h1 { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 12px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.65; margin-bottom: 8px; }
+    p.sub { font-size: 13px; color: var(--text-muted); }
+    .trip-name { color: var(--purple-bright); font-weight: 700; }
+    .code-box {
+      display: flex; justify-content: center; gap: 8px; margin: 22px 0 8px;
+      direction: ltr;
+    }
+    .code-char {
+      background: var(--bg-glass); border: 1px solid var(--border-glass);
+      border-radius: 10px; min-width: 40px; padding: 12px 6px;
+      font-family: var(--font-display); font-weight: 800; font-size: 22px;
+      color: var(--purple-bright); letter-spacing: 0;
+    }
+    .copy-btn {
+      background: none; border: none; color: var(--text-muted); font-size: 13px;
+      cursor: pointer; font-family: var(--font-body); margin-bottom: 18px;
+    }
+    .copy-btn:hover { color: var(--purple-bright); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%; background: var(--purple); color: #fff;
+      padding: 15px 24px; border-radius: 14px; text-decoration: none; border: none; cursor: pointer;
+      font-family: var(--font-display); font-weight: 700; font-size: 15px;
+      transition: transform .2s, opacity .2s; margin-top: 10px;
+    }
+    .btn.secondary { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text); }
+    .btn:hover { transform: translateY(-1px); }
+    .steps { text-align: start; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border-glass); }
+    .steps p { font-size: 13.5px; margin-bottom: 6px; }
+    .en { font-size: 12.5px; color: var(--text-muted); margin-top: 14px; direction: ltr; }
+    #no-code { display: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="/images/app-icon.png" alt="Xpensy">
+
+    <div id="has-code">
+      <div class="icon">🤝</div>
+      <h1>הוזמנת להצטרף לקבוצה</h1>
+      <p id="trip-line">הוזמנת לעקוב אחרי הוצאות משותפות ב-Xpensy</p>
+
+      <div class="code-box" id="code-box"></div>
+      <button class="copy-btn" id="copy-code">העתקת הקוד 📋</button>
+
+      <a class="btn" id="open-app" href="#">פתיחה באפליקציה והצטרפות</a>
+      <a class="btn secondary" href="https://apps.apple.com/app/id6761180051" target="_blank" rel="noopener">הורדת Xpensy מה-App Store</a>
+
+      <div class="steps">
+        <p>1. התקינו את Xpensy (אם עדיין לא מותקנת)</p>
+        <p>2. חזרו לדף הזה ולחצו "פתיחה באפליקציה" — או הזינו את הקוד במסך ההצטרפות</p>
+        <p>3. אם אינכם מחוברים — התחברו, וההצטרפות תושלם אוטומטית</p>
+      </div>
+      <p class="en">You've been invited to an Xpensy group. Install the app, then open this link again or enter the code above. Available for iPhone, iPad and Mac.</p>
+    </div>
+
+    <div id="no-code">
+      <div class="icon">🔗</div>
+      <h1>קישור הזמנה חסר</h1>
+      <p>הקישור אינו מכיל קוד הזמנה. בקשו ממנהל הקבוצה קישור חדש.</p>
+      <p class="en">This invite link is missing its code. Ask the group admin for a fresh link.</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var query = new URLSearchParams(location.search || '');
+      var code = (query.get('code') || '').trim().toUpperCase();
+      var trip = (query.get('trip') || '').trim();
+
+      if (!code) {
+        document.getElementById('has-code').style.display = 'none';
+        document.getElementById('no-code').style.display = 'block';
+        return;
+      }
+
+      if (trip) {
+        document.getElementById('trip-line').innerHTML =
+          'הוזמנת להצטרף לקבוצה <span class="trip-name"></span> ב-Xpensy';
+        document.querySelector('.trip-name').textContent = trip;
+      }
+
+      var box = document.getElementById('code-box');
+      code.split('').forEach(function (ch) {
+        var el = document.createElement('div');
+        el.className = 'code-char';
+        el.textContent = ch;
+        box.appendChild(el);
+      });
+
+      // Open the SAME app the invite came from (dev builds pass ?app=dev),
+      // mirroring the /auth page mechanism.
+      var scheme = query.get('app') === 'dev' ? 'xpensy-dev://' : 'xpensy://';
+      document.getElementById('open-app').setAttribute('href', scheme + 'join?code=' + encodeURIComponent(code));
+
+      document.getElementById('copy-code').addEventListener('click', function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code);
+          this.textContent = 'הקוד הועתק ✓';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
