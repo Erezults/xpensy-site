@@ -147,8 +147,8 @@
     </div>
 
     <div class="lang">
-      <button id="lang-he" class="active" onclick="setLang('he')">עברית</button>
-      <button id="lang-en" onclick="setLang('en')">English</button>
+      <button id="lang-he" class="active" onclick="setLang('he')">🇮🇱 עברית</button>
+      <button id="lang-en" onclick="setLang('en')">🇺🇸 English</button>
     </div>
     <a class="home" href="/">xpensy.erezults.com</a>
   </div>
@@ -195,7 +195,11 @@
       document.getElementById('lang-he').classList.toggle('active', lang === 'he');
       document.getElementById('lang-en').classList.toggle('active', lang === 'en');
     }
-    function setLang(l) { lang = l; applyLang(); }
+    function setLang(l) {
+      lang = l;
+      try { localStorage.setItem('xpensy_lang', l); } catch (e) {}
+      applyLang();
+    }
 
     // ── Config (anon key is public — same key shipped in the app bundle) ──
     var SUPABASE_URL = 'https://ocfchdjdhpwznyjswivc.supabase.co';
@@ -207,8 +211,11 @@
     }
 
     (function init() {
-      // Default to English when the browser is not Hebrew.
-      if ((navigator.language || '').slice(0, 2).toLowerCase() !== 'he') { lang = 'en'; }
+      // English default; Hebrew browsers get Hebrew; a saved choice wins over both.
+      var saved = null;
+      try { saved = localStorage.getItem('xpensy_lang'); } catch (e) {}
+      if (saved === 'he' || saved === 'en') { lang = saved; }
+      else if ((navigator.language || '').slice(0, 2).toLowerCase() !== 'he') { lang = 'en'; }
       applyLang();
 
       var hash = new URLSearchParams((location.hash || '').replace(/^#/, ''));

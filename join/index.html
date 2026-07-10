@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
-  <title>Xpensy — הצטרפות לקבוצה</title>
+  <title>Xpensy — הצטרפות לקבוצה / Join a group</title>
   <link rel="icon" href="/images/app-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +66,12 @@
     .btn:hover { transform: translateY(-1px); }
     .steps { text-align: start; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border-glass); }
     .steps p { font-size: 13.5px; margin-bottom: 6px; }
-    .en { font-size: 12.5px; color: var(--text-muted); margin-top: 14px; direction: ltr; }
+    .lang { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
+    .lang button {
+      background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-muted);
+      border-radius: 999px; padding: 6px 14px; font-size: 13px; cursor: pointer; font-family: var(--font-body);
+    }
+    .lang button.active { color: var(--text); border-color: var(--purple); }
     #no-code { display: none; }
   </style>
 </head>
@@ -76,47 +81,118 @@
 
     <div id="has-code">
       <div class="icon">🤝</div>
-      <h1>הוזמנת להצטרף לקבוצה</h1>
+      <h1 data-t="title">הוזמנת להצטרף לקבוצה</h1>
       <p id="trip-line">הוזמנת לעקוב אחרי הוצאות משותפות ב-Xpensy</p>
 
       <div class="code-box" id="code-box"></div>
-      <button class="copy-btn" id="copy-code">העתקת הקוד 📋</button>
+      <button class="copy-btn" id="copy-code" data-t="copy">העתקת הקוד 📋</button>
 
-      <a class="btn" id="open-app" href="#">פתיחה באפליקציה והצטרפות</a>
-      <a class="btn secondary" href="https://apps.apple.com/app/id6761180051" target="_blank" rel="noopener">הורדת Xpensy מה-App Store</a>
+      <a class="btn" id="open-app" href="#" data-t="openApp">פתיחה באפליקציה והצטרפות</a>
+      <a class="btn secondary" href="https://apps.apple.com/app/id6761180051" target="_blank" rel="noopener" data-t="store">הורדת Xpensy מה-App Store</a>
 
       <div class="steps">
-        <p>1. התקינו את Xpensy (אם עדיין לא מותקנת)</p>
-        <p>2. חזרו לדף הזה ולחצו "פתיחה באפליקציה" — או הזינו את הקוד במסך ההצטרפות</p>
-        <p>3. אם אינכם מחוברים — התחברו, וההצטרפות תושלם אוטומטית</p>
+        <p data-t="step1">1. התקינו את Xpensy (אם עדיין לא מותקנת)</p>
+        <p data-t="step2">2. חזרו לדף הזה ולחצו "פתיחה באפליקציה" — או הזינו את הקוד במסך ההצטרפות</p>
+        <p data-t="step3">3. אם אינכם מחוברים — התחברו, וההצטרפות תושלם אוטומטית</p>
       </div>
-      <p class="en">You've been invited to an Xpensy group. Install the app, then open this link again or enter the code above. Available for iPhone, iPad and Mac.</p>
     </div>
 
     <div id="no-code">
       <div class="icon">🔗</div>
-      <h1>קישור הזמנה חסר</h1>
-      <p>הקישור אינו מכיל קוד הזמנה. בקשו ממנהל הקבוצה קישור חדש.</p>
-      <p class="en">This invite link is missing its code. Ask the group admin for a fresh link.</p>
+      <h1 data-t="noCodeTitle">קישור הזמנה חסר</h1>
+      <p data-t="noCodeBody">הקישור אינו מכיל קוד הזמנה. בקשו ממנהל הקבוצה קישור חדש.</p>
+    </div>
+
+    <div class="lang">
+      <button id="lang-he" class="active" onclick="setLang('he')">🇮🇱 עברית</button>
+      <button id="lang-en" onclick="setLang('en')">🇺🇸 English</button>
     </div>
   </div>
 
   <script>
+    // ── Bilingual strings (English default; Hebrew for Hebrew browsers; saved choice wins) ──
+    var STR = {
+      he: {
+        docTitle: 'Xpensy — הצטרפות לקבוצה',
+        title: 'הוזמנת להצטרף לקבוצה',
+        tripPlain: 'הוזמנת לעקוב אחרי הוצאות משותפות ב-Xpensy',
+        tripNamedPrefix: 'הוזמנת להצטרף לקבוצה ', tripNamedSuffix: ' ב-Xpensy',
+        copy: 'העתקת הקוד 📋', copied: 'הקוד הועתק ✓',
+        openApp: 'פתיחה באפליקציה והצטרפות',
+        store: 'הורדת Xpensy מה-App Store',
+        step1: '1. התקינו את Xpensy (אם עדיין לא מותקנת)',
+        step2: '2. חזרו לדף הזה ולחצו "פתיחה באפליקציה" — או הזינו את הקוד במסך ההצטרפות',
+        step3: '3. אם אינכם מחוברים — התחברו, וההצטרפות תושלם אוטומטית',
+        noCodeTitle: 'קישור הזמנה חסר',
+        noCodeBody: 'הקישור אינו מכיל קוד הזמנה. בקשו ממנהל הקבוצה קישור חדש.',
+      },
+      en: {
+        docTitle: 'Xpensy — Join a group',
+        title: 'You are invited to a group',
+        tripPlain: 'You have been invited to track shared expenses on Xpensy',
+        tripNamedPrefix: 'You have been invited to join ', tripNamedSuffix: ' on Xpensy',
+        copy: 'Copy code 📋', copied: 'Code copied ✓',
+        openApp: 'Open in the app and join',
+        store: 'Get Xpensy on the App Store',
+        step1: '1. Install Xpensy (if it is not installed yet)',
+        step2: '2. Come back to this page and tap "Open in the app" — or enter the code on the Join screen',
+        step3: '3. If you are signed out — sign in, and joining completes automatically',
+        noCodeTitle: 'Invite link is missing its code',
+        noCodeBody: 'This invite link is missing its code. Ask the group admin for a fresh link.',
+      }
+    };
+    var lang = 'he';
+    var tripName = '';
+
+    function applyLang() {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+      document.title = STR[lang].docTitle;
+      document.querySelectorAll('[data-t]').forEach(function (el) {
+        var k = el.getAttribute('data-t');
+        if (STR[lang][k]) el.textContent = STR[lang][k];
+      });
+      renderTripLine();
+      document.getElementById('lang-he').classList.toggle('active', lang === 'he');
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    }
+    function setLang(l) {
+      lang = l;
+      try { localStorage.setItem('xpensy_lang', l); } catch (e) {}
+      applyLang();
+    }
+    function renderTripLine() {
+      var el = document.getElementById('trip-line');
+      if (!el) return;
+      if (tripName) {
+        el.textContent = '';
+        el.appendChild(document.createTextNode(STR[lang].tripNamedPrefix));
+        var span = document.createElement('span');
+        span.className = 'trip-name';
+        span.textContent = tripName;
+        el.appendChild(span);
+        el.appendChild(document.createTextNode(STR[lang].tripNamedSuffix));
+      } else {
+        el.textContent = STR[lang].tripPlain;
+      }
+    }
+
     (function () {
       var query = new URLSearchParams(location.search || '');
       var code = (query.get('code') || '').trim().toUpperCase();
-      var trip = (query.get('trip') || '').trim();
+      tripName = (query.get('trip') || '').trim();
+
+      // English default; Hebrew browsers get Hebrew; a saved choice wins over both.
+      var saved = null;
+      try { saved = localStorage.getItem('xpensy_lang'); } catch (e) {}
+      if (saved === 'he' || saved === 'en') { lang = saved; }
+      else if ((navigator.language || '').slice(0, 2).toLowerCase() !== 'he') { lang = 'en'; }
+      applyLang();
 
       if (!code) {
         document.getElementById('has-code').style.display = 'none';
         document.getElementById('no-code').style.display = 'block';
         return;
-      }
-
-      if (trip) {
-        document.getElementById('trip-line').innerHTML =
-          'הוזמנת להצטרף לקבוצה <span class="trip-name"></span> ב-Xpensy';
-        document.querySelector('.trip-name').textContent = trip;
       }
 
       var box = document.getElementById('code-box');
@@ -130,12 +206,12 @@
       // Open the SAME app the invite came from (dev builds pass ?app=dev),
       // mirroring the /auth page mechanism.
       var scheme = query.get('app') === 'dev' ? 'xpensy-dev://' : 'xpensy://';
-      document.getElementById('open-app').setAttribute('href', scheme + 'join?code=' + encodeURIComponent(code));
+      document.getElementById('open-app').setAttribute('href', scheme + 'join/' + encodeURIComponent(code));
 
       document.getElementById('copy-code').addEventListener('click', function () {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(code);
-          this.textContent = 'הקוד הועתק ✓';
+          this.textContent = STR[lang].copied;
         }
       });
     })();
