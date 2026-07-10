@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Xpensy — Redirecting…</title>
+</head>
+<body style="background:#08060e;">
+  <script>
+    // DEV-app marker path (…/auth/dev/) — the path-based twin of ?app=dev.
+    // Relays to the real auth page with the dev flag, preserving BOTH the
+    // query string and the Supabase token hash (#access_token=…).
+    var q = new URLSearchParams(location.search || '');
+    q.set('app', 'dev');
+    location.replace('/auth/?' + q.toString() + (location.hash || ''));
+  </script>
+</body>
+</html>
