@@ -90,7 +90,7 @@
       '  border-radius: 8px; padding: 9px 8px; font-size: 13px; cursor: pointer; text-align: center;',
       '}',
       '.a11y-row button:hover, .a11y-panel-btn:hover { background: rgba(255,255,255,0.14); }',
-      '.a11y-row button[aria-pressed="true"], .a11y-panel-btn.on { background: #6c5ce7; border-color: #6c5ce7; }',
+      '.a11y-row button[aria-pressed="true"], .a11y-panel-btn[aria-pressed="true"] { background: #6c5ce7; border-color: #6c5ce7; }',
       '.a11y-panel a.a11y-panel-link {',
       '  display: block; text-align: center; margin-top: 6px; font-size: 12.5px; color: #a78bfa; text-decoration: none;',
       '}',
