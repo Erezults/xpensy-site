@@ -21,7 +21,7 @@
       --bg-glass: rgba(255,255,255,0.04); --border-glass: rgba(255,255,255,0.08);
       --purple: #8b5cf6; --purple-bright: #a78bfa; --purple-glow: rgba(139,92,246,0.25);
       --cyan: #22d3ee; --emerald: #34d399;
-      --text: #f1f0f5; --text-secondary: rgba(241,240,245,0.55); --text-muted: rgba(241,240,245,0.3);
+      --text: #f1f0f5; --text-secondary: rgba(241,240,245,0.55); --text-muted: rgba(241,240,245,0.5);
       --font-display: 'Outfit', sans-serif; --font-body: 'Plus Jakarta Sans', sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -128,7 +128,7 @@
   <p data-he="כל היסודות בחינם. משדרגים רק כשרוצים יותר — ובלי לאבד אף פעם שום נתון." data-en="All the essentials are free. Upgrade only when you want more — and never lose any of your data.">כל היסודות בחינם. משדרגים רק כשרוצים יותר — ובלי לאבד אף פעם שום נתון.</p>
 </section>
 
-<div class="wrap">
+<div class="wrap" id="main-content">
   <!-- FREE -->
   <div class="free-card">
     <strong data-he="חינם, תמיד" data-en="Free, always">חינם, תמיד</strong>
@@ -200,12 +200,14 @@
     <a href="/faq" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
     <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy">מדיניות פרטיות</a>
     <a href="/terms" data-he="תנאי שימוש" data-en="Terms">תנאי שימוש</a>
+    <a href="/accessibility" data-he="נגישות" data-en="Accessibility">נגישות</a>
     <a href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
     <a href="https://www.erezults.com">E-REZULTS</a>
   </div>
   <div class="footer-copy">&copy; 2022–2026 E-REZULTS · Erez Cohen</div>
 </footer>
 
+<script src="/a11y.js" defer></script>
 <script>
   function setLang(lang) {
     const isHe = lang === 'he';

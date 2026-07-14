@@ -28,7 +28,7 @@
       --emerald: #34d399;
       --text: #f1f0f5;
       --text-secondary: rgba(241,240,245,0.55);
-      --text-muted: rgba(241,240,245,0.3);
+      --text-muted: rgba(241,240,245,0.5);
       --font-display: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
     }
@@ -174,7 +174,7 @@
   <p data-he="כל מה שצריך לדעת על Xpensy — מטיולים וסריקת קבלות ועד מנויים, פרטיות וניהול החשבון." data-en="Everything you need to know about Xpensy — from trips and receipt scanning to subscriptions, privacy, and managing your account.">כל מה שצריך לדעת על Xpensy — מטיולים וסריקת קבלות ועד מנויים, פרטיות וניהול החשבון.</p>
 </header>
 
-<div class="content">
+<div class="content" id="main-content">
 
   <!-- ═══ GETTING STARTED ═══ -->
   <div class="cat-title" data-he="התחלה מהירה" data-en="Getting Started">התחלה מהירה</div>
@@ -311,12 +311,14 @@
     <a href="/faq" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a>
     <a href="/privacy" data-he="מדיניות פרטיות" data-en="Privacy">מדיניות פרטיות</a>
     <a href="/terms" data-he="תנאי שימוש" data-en="Terms">תנאי שימוש</a>
+    <a href="/accessibility" data-he="נגישות" data-en="Accessibility">נגישות</a>
     <a href="mailto:xpensy.support@erezults.com" data-he="צרו קשר" data-en="Contact">צרו קשר</a>
     <a href="https://www.erezults.com">E-REZULTS</a>
   </div>
   <div class="footer-copy">&copy; 2022–2026 E-REZULTS · Erez Cohen</div>
 </footer>
 
+<script src="/a11y.js" defer></script>
 <script>
   function setLang(lang) {
     const isHe = lang === 'he';
